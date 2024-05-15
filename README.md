@@ -12,3 +12,4 @@ I'm not sure how to join the Hebrew words properly given the structure of the so
 
  - Both Greek and Hebrew data is taken from [Clear Bible Alignments](https://github.com/Clear-Bible/Alignments)
  - Wordlist data gathered from [Vocabulary Tools](https://github.com/jtauber/vocabulary-tools) by James Tauber.
+ - vocablary strongs to lemma mapings based on [Macula Hebrew](https://github.com/Clear-Bible/macula-hebrew) and [Macula Greek](https://github.com/Clear-Bible/macula-greek)
