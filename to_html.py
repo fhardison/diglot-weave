@@ -55,8 +55,12 @@ def group_counts(data, group_size):
 
 
 def reversed(x):
+    return x
     return x[::-1]
 
+def to_p(vnum, buff, hebrew):
+    dir = 'dir="rtl"' if hebrew else 'dir="ltr"'
+    return f"<p class='verse{cl}' {dir}><sup>{int(vnum)}</sup> {' '.join(buff)}</p>"
 
 LANG = sys.argv[1]
 tgt = './SBLGNT-BSB.tsv' if LANG.upper().strip().startswith('G') else './WLC-LEB.txt'
@@ -80,7 +84,7 @@ for row in data:
             if hebrew:
                 buffer = reversed(buffer)
                 cl = ' hebrew'
-            chapter.append(f"<p class='verse{cl}'><sup>{int(cur_verse)}</sup> {' '.join(buffer)}</p>")
+            chapter.append(to_p(cur_verse, buffer, hebrew))
         buffer = []
         cur_verse = v
     if cp != cur_chapter:
@@ -98,14 +102,14 @@ for row in data:
     gloss = row['gloss']
     text = row['text']
     count_lem = c[row['strongs']]
-    dir = 'dir="rtl"' if hebrew else ''
-    buffer.append(f'<span class="wrapper" x-count="{count_lem}"><span class="word visible" {dir}>{text}</span><span class="gloss hidden">{gloss}</span></span>')
+    dir = 'dir="rtl"' if hebrew else 'dir="ltr"'
+    buffer.append(f'<span class="wrapper" x-count="{count_lem}"><span class="word visible" {dir}>{text}</span><span class="gloss hidden" dir="ltr">{gloss}</span></span>')
 if buffer:
     cl = ' greek'
     if hebrew:
         buffer = reversed(buffer)
         cl = ' hebrew'
-    chapter.append(f"<p class='verse {cl}'><sup>{int(cur_verse)}</sup> {' '.join(buffer)}</p>")
+    chapter.append(to_p(cur_verse, buffer, hebrew))
     bk = book_map[int(cur_book)]
     template = Path('./template.html').read_text()
     fpath = f'./docs/{bk}-{int(cur_chapter)}.html'
