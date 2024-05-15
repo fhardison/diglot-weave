@@ -74,11 +74,11 @@
     function generate() {
         console.log('generating');
         const wrappers = document.querySelectorAll('.wrapper');
-        const batas = level.value + 1
+        const batas = parseInt(level.value) + 1;
         for (const elem of wrappers) {
             const source = elem.querySelector('.gloss');
             const tgt = elem.querySelector('.word');
-            if(elem.getAttribute('x-count')< batas) {
+            if(parseInt(elem.getAttribute('x-count')) < batas) {
                 source.classList.add('visible');
                 source.classList.remove('hidden');
                 tgt.classList.add('hidden');
