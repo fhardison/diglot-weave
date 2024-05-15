@@ -15,6 +15,10 @@
     <input type="number" id="vocabMin" name="vocabMin" min="0" value="1000" placeholder="Enter a number">
     <button id="clickme" onclick="generate">Generate</button>
       </div>
+      <details>
+          <summary>Vocab data from selected vocab level</summary>
+          <div id="vocab-data"></div>
+      </details>
   </div>
   <div class="contents">
   <p class='verse hebrew'><sup>1</sup> <span class="wrapper" x-count="2506"><span class="word visible" dir="rtl">יִשְׂרָאֵל</span><span class="gloss hidden">Israel</span></span> <span class="wrapper" x-count="130"><span class="word visible" dir="rtl">נְשִׂיאֵי</span><span class="gloss hidden">princes</span></span> <span class="wrapper" x-count="5514"><span class="word visible" dir="rtl">אֶל</span><span class="gloss hidden">for</span></span> <span class="wrapper" x-count="18"><span class="word visible" dir="rtl">קִינָה</span><span class="gloss hidden">lament</span></span> <span class="wrapper" x-count="655"><span class="word visible" dir="rtl">שָׂא</span><span class="gloss hidden">take up</span></span> <span class="wrapper" x-count="744"><span class="word visible" dir="rtl">אַתָּה</span><span class="gloss hidden">you</span></span> <span class="wrapper" x-count="50272"><span class="word visible" dir="rtl">וְ</span><span class="gloss hidden">now</span></span></p>
@@ -33,15 +37,48 @@
 <p class='verse hebrew'><sup>14</sup> <span class="wrapper" x-count="18"><span class="word visible" dir="rtl">קִינָה</span><span class="gloss hidden">lament</span></span> <span class="wrapper" x-count="20378"><span class="word visible" dir="rtl">לְ</span><span class="gloss hidden">as</span></span> <span class="wrapper" x-count="3561"><span class="word visible" dir="rtl">תְּהִי</span><span class="gloss hidden">used</span></span> <span class="wrapper" x-count="50272"><span class="word visible" dir="rtl">וַ</span><span class="gloss hidden">and</span></span> <span class="wrapper" x-count="485"><span class="word visible" dir="rtl">הִיא</span><span class="gloss hidden">this</span></span> <span class="wrapper" x-count="18"><span class="word visible" dir="rtl">קִינָה</span><span class="gloss hidden">lament</span></span> <span class="wrapper" x-count="80"><span class="word visible" dir="rtl">מְשׁוֹל</span><span class="gloss hidden">ruling</span></span> <span class="wrapper" x-count="20378"><span class="word visible" dir="rtl">לִ</span><span class="gloss hidden">for</span></span> <span class="wrapper" x-count="190"><span class="word visible" dir="rtl">שֵׁבֶט</span><span class="gloss hidden">scepter</span></span> <span class="wrapper" x-count="93"><span class="word visible" dir="rtl">עֹז</span><span class="gloss hidden">strong</span></span> <span class="wrapper" x-count="252"><span class="word visible" dir="rtl">מַטֵּה</span><span class="gloss hidden">branch</span></span> <span class="wrapper" x-count="3116"><span class="word visible" dir="rtl">הּ</span><span class="gloss hidden">it</span></span> <span class="wrapper" x-count="15539"><span class="word visible" dir="rtl">בָ</span><span class="gloss hidden">in</span></span> <span class="wrapper" x-count="3561"><span class="word visible" dir="rtl">הָיָה</span><span class="gloss hidden">remains</span></span> <span class="wrapper" x-count="5168"><span class="word visible" dir="rtl">לֹא</span><span class="gloss hidden">no</span></span> <span class="wrapper" x-count="50272"><span class="word visible" dir="rtl">וְ</span><span class="gloss hidden">so</span></span> <span class="wrapper" x-count="809"><span class="word visible" dir="rtl">אָכָלָה</span><span class="gloss hidden">consumed</span></span> <span class="wrapper" x-count="3116"><span class="word visible" dir="rtl">הּ</span><span class="gloss hidden">its</span></span> <span class="wrapper" x-count="119"><span class="word visible" dir="rtl">פִּרְיָ</span><span class="gloss hidden">fruit</span></span> <span class="wrapper" x-count="3116"><span class="word visible" dir="rtl">הָ</span><span class="gloss hidden">its</span></span> <span class="wrapper" x-count="41"><span class="word visible" dir="rtl">בַדֶּי</span><span class="gloss hidden">shoots</span></span> <span class="wrapper" x-count="252"><span class="word visible" dir="rtl">מַּטֵּה</span><span class="gloss hidden">stem</span></span> <span class="wrapper" x-count="7559"><span class="word visible" dir="rtl">מִ</span><span class="gloss hidden">from</span></span> <span class="wrapper" x-count="378"><span class="word visible" dir="rtl">אֵשׁ</span><span class="gloss hidden">fire</span></span> <span class="wrapper" x-count="1068"><span class="word visible" dir="rtl">תֵּצֵא</span><span class="gloss hidden">gone out</span></span> <span class="wrapper" x-count="50272"><span class="word visible" dir="rtl">וַ</span><span class="gloss hidden">and</span></span></p>
   </div>
  <script>
+      const SKEY = 'minVal';
+      const DEFAULT = 1000;
       const level = document.getElementById('vocabMin');
+      window.onload = function() {
+          console.log('loading');
+           const freq = sessionStorage.getItem(SKEY);
+          if (freq !== null) {
+              level.value = freq;
+          } else {
+              sessionStorage.setItem(SKEY, DEFAULT);
+              level.value = DEFAULT;
+          }
+      }
+      level.addEventListener('change', function() {
+          const val = parseInt(this.value);
+          sessionStorage.setItem(SKEY, val);
+      });
+      const vdata = document.getElementById('vocab-data');
+     function getHighest(mySet) {
+        let highestNumber = null;
+
+        for (const number of mySet) {
+          if (highestNumber === null || number > highestNumber) {
+            highestNumber = number;
+          }
+        }
+        return highestNumber;       
+     }
     function generate() {
+        vdata.innerHTML = '';
         console.log('generating');
+        const at_leves = [];
         const wrappers = document.querySelectorAll('.wrapper');
-        const batas = parseInt(level.value) + 1;
+        const batas = parseInt(sessionStorage.getItem(SKEY)) + 1;
+        const values =  new Set();
         for (const elem of wrappers) {
             const source = elem.querySelector('.gloss');
             const tgt = elem.querySelector('.word');
-            if(parseInt(elem.getAttribute('x-count')) < batas) {
+            const elem_count = parseInt(elem.getAttribute('x-count'))
+             
+            if (elem_count < batas) {
+                values.add(elem_count);
                 source.classList.add('visible');
                 source.classList.remove('hidden');
                 tgt.classList.add('hidden');
@@ -52,8 +89,25 @@
                 source.classList.add('hidden');
                 source.classList.remove('visible');
             }
+            if (elem_count === batas - 1) {
+                at_leves.push([tgt.textContent, source.textContent]);
+            }
         }
-
+        const vocabularyListUl = document.createElement("ul");
+        //console.log(at_leves);
+        for (const word of at_leves) {
+            const vocabularyListItem = document.createElement("li");
+            vocabularyListItem.textContent = word[0] + ' ' + word[1];
+            vocabularyListUl.appendChild(vocabularyListItem);
+        }
+        console.log(values);
+        const closest = getHighest(values);
+        if (closest !== batas){
+            const highVal = document.createElement("li");
+            highVal.textContent = "Closest frequency value in chapter is: " + closest;
+            vocabularyListUl.appendChild(highVal);
+        }
+        vdata.appendChild(vocabularyListUl);
     }
       document.getElementById('clickme').addEventListener("click", generate);
 

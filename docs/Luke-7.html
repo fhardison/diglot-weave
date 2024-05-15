@@ -15,6 +15,10 @@
     <input type="number" id="vocabMin" name="vocabMin" min="0" value="1000" placeholder="Enter a number">
     <button id="clickme" onclick="generate">Generate</button>
       </div>
+      <details>
+          <summary>Vocab data from selected vocab level</summary>
+          <div id="vocab-data"></div>
+      </details>
   </div>
   <div class="contents">
   <p class='verse greek'><sup>1</sup> <span class="wrapper" x-count="10"><span class="word visible" >Ἐπειδὴ</span><span class="gloss hidden">And when</span></span> <span class="wrapper" x-count="86"><span class="word visible" >ἐπλήρωσεν</span><span class="gloss hidden">He had completed</span></span> <span class="wrapper" x-count="1243"><span class="word visible" >πάντα</span><span class="gloss hidden">all</span></span> <span class="wrapper" x-count="19787"><span class="word visible" >τὰ</span><span class="gloss hidden">the</span></span> <span class="wrapper" x-count="68"><span class="word visible" >ῥήματα</span><span class="gloss hidden">words</span></span> <span class="wrapper" x-count="5069"><span class="word visible" >αὐτοῦ</span><span class="gloss hidden">of Him</span></span> <span class="wrapper" x-count="1764"><span class="word visible" >εἰς</span><span class="gloss hidden">in</span></span> <span class="wrapper" x-count="19787"><span class="word visible" >τὰς</span><span class="gloss hidden">the</span></span> <span class="wrapper" x-count="24"><span class="word visible" >ἀκοὰς</span><span class="gloss hidden">hearing</span></span> <span class="wrapper" x-count="19787"><span class="word visible" >τοῦ</span><span class="gloss hidden">of the</span></span> <span class="wrapper" x-count="142"><span class="word visible" >λαοῦ</span><span class="gloss hidden">people</span></span> <span class="wrapper" x-count="193"><span class="word visible" >εἰσῆλθεν</span><span class="gloss hidden">He entered</span></span> <span class="wrapper" x-count="1764"><span class="word visible" >εἰς</span><span class="gloss hidden">into</span></span> <span class="wrapper" x-count="16"><span class="word visible" >Καφαρναούμ</span><span class="gloss hidden">Capernaum</span></span></p>
@@ -69,15 +73,48 @@
 <p class='verse greek'><sup>50</sup> <span class="wrapper" x-count="922"><span class="word visible" >εἶπεν</span><span class="gloss hidden">He said</span></span> <span class="wrapper" x-count="2779"><span class="word visible" >δὲ</span><span class="gloss hidden">then</span></span> <span class="wrapper" x-count="697"><span class="word visible" >πρὸς</span><span class="gloss hidden">to</span></span> <span class="wrapper" x-count="19787"><span class="word visible" >τὴν</span><span class="gloss hidden">the</span></span> <span class="wrapper" x-count="215"><span class="word visible" >γυναῖκα</span><span class="gloss hidden">woman</span></span> <span class="wrapper" x-count="19787"><span class="word visible" >Ἡ</span><span class="gloss hidden">The</span></span> <span class="wrapper" x-count="242"><span class="word visible" >πίστις</span><span class="gloss hidden">faith</span></span> <span class="wrapper" x-count="478"><span class="word visible" >σου</span><span class="gloss hidden">of You</span></span> <span class="wrapper" x-count="106"><span class="word visible" >σέσωκέν</span><span class="gloss hidden">has saved</span></span> <span class="wrapper" x-count="197"><span class="word visible" >σε</span><span class="gloss hidden">you</span></span> <span class="wrapper" x-count="153"><span class="word visible" >πορεύου</span><span class="gloss hidden">go</span></span> <span class="wrapper" x-count="1764"><span class="word visible" >εἰς</span><span class="gloss hidden">in</span></span> <span class="wrapper" x-count="91"><span class="word visible" >εἰρήνην</span><span class="gloss hidden">peace</span></span></p>
   </div>
  <script>
+      const SKEY = 'minVal';
+      const DEFAULT = 1000;
       const level = document.getElementById('vocabMin');
+      window.onload = function() {
+          console.log('loading');
+           const freq = sessionStorage.getItem(SKEY);
+          if (freq !== null) {
+              level.value = freq;
+          } else {
+              sessionStorage.setItem(SKEY, DEFAULT);
+              level.value = DEFAULT;
+          }
+      }
+      level.addEventListener('change', function() {
+          const val = parseInt(this.value);
+          sessionStorage.setItem(SKEY, val);
+      });
+      const vdata = document.getElementById('vocab-data');
+     function getHighest(mySet) {
+        let highestNumber = null;
+
+        for (const number of mySet) {
+          if (highestNumber === null || number > highestNumber) {
+            highestNumber = number;
+          }
+        }
+        return highestNumber;       
+     }
     function generate() {
+        vdata.innerHTML = '';
         console.log('generating');
+        const at_leves = [];
         const wrappers = document.querySelectorAll('.wrapper');
-        const batas = parseInt(level.value) + 1;
+        const batas = parseInt(sessionStorage.getItem(SKEY)) + 1;
+        const values =  new Set();
         for (const elem of wrappers) {
             const source = elem.querySelector('.gloss');
             const tgt = elem.querySelector('.word');
-            if(parseInt(elem.getAttribute('x-count')) < batas) {
+            const elem_count = parseInt(elem.getAttribute('x-count'))
+             
+            if (elem_count < batas) {
+                values.add(elem_count);
                 source.classList.add('visible');
                 source.classList.remove('hidden');
                 tgt.classList.add('hidden');
@@ -88,8 +125,25 @@
                 source.classList.add('hidden');
                 source.classList.remove('visible');
             }
+            if (elem_count === batas - 1) {
+                at_leves.push([tgt.textContent, source.textContent]);
+            }
         }
-
+        const vocabularyListUl = document.createElement("ul");
+        //console.log(at_leves);
+        for (const word of at_leves) {
+            const vocabularyListItem = document.createElement("li");
+            vocabularyListItem.textContent = word[0] + ' ' + word[1];
+            vocabularyListUl.appendChild(vocabularyListItem);
+        }
+        console.log(values);
+        const closest = getHighest(values);
+        if (closest !== batas){
+            const highVal = document.createElement("li");
+            highVal.textContent = "Closest frequency value in chapter is: " + closest;
+            vocabularyListUl.appendChild(highVal);
+        }
+        vdata.appendChild(vocabularyListUl);
     }
       document.getElementById('clickme').addEventListener("click", generate);
 

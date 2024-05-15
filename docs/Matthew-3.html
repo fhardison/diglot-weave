@@ -15,6 +15,10 @@
     <input type="number" id="vocabMin" name="vocabMin" min="0" value="1000" placeholder="Enter a number">
     <button id="clickme" onclick="generate">Generate</button>
       </div>
+      <details>
+          <summary>Vocab data from selected vocab level</summary>
+          <div id="vocab-data"></div>
+      </details>
   </div>
   <div class="contents">
   <p class='verse greek'><sup>1</sup> <span class="wrapper" x-count="2733"><span class="word visible" >Ἐν</span><span class="gloss hidden">In</span></span> <span class="wrapper" x-count="2779"><span class="word visible" >δὲ</span><span class="gloss hidden">then</span></span> <span class="wrapper" x-count="19787"><span class="word visible" >ταῖς</span><span class="gloss hidden">the</span></span> <span class="wrapper" x-count="389"><span class="word visible" >ἡμέραις</span><span class="gloss hidden">days</span></span> <span class="wrapper" x-count="242"><span class="word visible" >ἐκείναις</span><span class="gloss hidden">those</span></span> <span class="wrapper" x-count="37"><span class="word visible" >παραγίνεται</span><span class="gloss hidden">comes</span></span> <span class="wrapper" x-count="135"><span class="word visible" >Ἰωάννης</span><span class="gloss hidden">John</span></span> <span class="wrapper" x-count="19787"><span class="word visible" >ὁ</span><span class="gloss hidden">the</span></span> <span class="wrapper" x-count="12"><span class="word visible" >βαπτιστὴς</span><span class="gloss hidden">Baptist</span></span> <span class="wrapper" x-count="61"><span class="word visible" >κηρύσσων</span><span class="gloss hidden">preaching</span></span> <span class="wrapper" x-count="2733"><span class="word visible" >ἐν</span><span class="gloss hidden">in</span></span> <span class="wrapper" x-count="19787"><span class="word visible" >τῇ</span><span class="gloss hidden">the</span></span> <span class="wrapper" x-count="48"><span class="word visible" >ἐρήμῳ</span><span class="gloss hidden">wilderness</span></span> <span class="wrapper" x-count="19787"><span class="word visible" >τῆς</span><span class="gloss hidden">-</span></span> <span class="wrapper" x-count="44"><span class="word visible" >Ἰουδαίας</span><span class="gloss hidden">of Judea</span></span></p>
@@ -36,15 +40,48 @@
 <p class='verse greek'><sup>17</sup> <span class="wrapper" x-count="8982"><span class="word visible" >καὶ</span><span class="gloss hidden">And</span></span> <span class="wrapper" x-count="200"><span class="word visible" >ἰδοὺ</span><span class="gloss hidden">behold</span></span> <span class="wrapper" x-count="139"><span class="word visible" >φωνὴ</span><span class="gloss hidden">a voice</span></span> <span class="wrapper" x-count="914"><span class="word visible" >ἐκ</span><span class="gloss hidden">out</span></span> <span class="wrapper" x-count="19787"><span class="word visible" >τῶν</span><span class="gloss hidden">of the</span></span> <span class="wrapper" x-count="273"><span class="word visible" >οὐρανῶν</span><span class="gloss hidden">heavens</span></span> <span class="wrapper" x-count="1335"><span class="word visible" >λέγουσα</span><span class="gloss hidden">saying</span></span> <span class="wrapper" x-count="339"><span class="word visible" >Οὗτός</span><span class="gloss hidden">This</span></span> <span class="wrapper" x-count="896"><span class="word visible" >ἐστιν</span><span class="gloss hidden">is</span></span> <span class="wrapper" x-count="19787"><span class="word visible" >ὁ</span><span class="gloss hidden">the</span></span> <span class="wrapper" x-count="376"><span class="word visible" >υἱός</span><span class="gloss hidden">Son</span></span> <span class="wrapper" x-count="564"><span class="word visible" >μου</span><span class="gloss hidden">of me</span></span> <span class="wrapper" x-count="19787"><span class="word visible" >ὁ</span><span class="gloss hidden">the</span></span> <span class="wrapper" x-count="61"><span class="word visible" >ἀγαπητός</span><span class="gloss hidden">beloved</span></span> <span class="wrapper" x-count="2733"><span class="word visible" >ἐν</span><span class="gloss hidden">in</span></span> <span class="wrapper" x-count="1407"><span class="word visible" >ᾧ</span><span class="gloss hidden">whom</span></span> <span class="wrapper" x-count="21"><span class="word visible" >εὐδόκησα</span><span class="gloss hidden">I was well pleased</span></span></p>
   </div>
  <script>
+      const SKEY = 'minVal';
+      const DEFAULT = 1000;
       const level = document.getElementById('vocabMin');
+      window.onload = function() {
+          console.log('loading');
+           const freq = sessionStorage.getItem(SKEY);
+          if (freq !== null) {
+              level.value = freq;
+          } else {
+              sessionStorage.setItem(SKEY, DEFAULT);
+              level.value = DEFAULT;
+          }
+      }
+      level.addEventListener('change', function() {
+          const val = parseInt(this.value);
+          sessionStorage.setItem(SKEY, val);
+      });
+      const vdata = document.getElementById('vocab-data');
+     function getHighest(mySet) {
+        let highestNumber = null;
+
+        for (const number of mySet) {
+          if (highestNumber === null || number > highestNumber) {
+            highestNumber = number;
+          }
+        }
+        return highestNumber;       
+     }
     function generate() {
+        vdata.innerHTML = '';
         console.log('generating');
+        const at_leves = [];
         const wrappers = document.querySelectorAll('.wrapper');
-        const batas = parseInt(level.value) + 1;
+        const batas = parseInt(sessionStorage.getItem(SKEY)) + 1;
+        const values =  new Set();
         for (const elem of wrappers) {
             const source = elem.querySelector('.gloss');
             const tgt = elem.querySelector('.word');
-            if(parseInt(elem.getAttribute('x-count')) < batas) {
+            const elem_count = parseInt(elem.getAttribute('x-count'))
+             
+            if (elem_count < batas) {
+                values.add(elem_count);
                 source.classList.add('visible');
                 source.classList.remove('hidden');
                 tgt.classList.add('hidden');
@@ -55,8 +92,25 @@
                 source.classList.add('hidden');
                 source.classList.remove('visible');
             }
+            if (elem_count === batas - 1) {
+                at_leves.push([tgt.textContent, source.textContent]);
+            }
         }
-
+        const vocabularyListUl = document.createElement("ul");
+        //console.log(at_leves);
+        for (const word of at_leves) {
+            const vocabularyListItem = document.createElement("li");
+            vocabularyListItem.textContent = word[0] + ' ' + word[1];
+            vocabularyListUl.appendChild(vocabularyListItem);
+        }
+        console.log(values);
+        const closest = getHighest(values);
+        if (closest !== batas){
+            const highVal = document.createElement("li");
+            highVal.textContent = "Closest frequency value in chapter is: " + closest;
+            vocabularyListUl.appendChild(highVal);
+        }
+        vdata.appendChild(vocabularyListUl);
     }
       document.getElementById('clickme').addEventListener("click", generate);
 

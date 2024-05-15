@@ -15,6 +15,10 @@
     <input type="number" id="vocabMin" name="vocabMin" min="0" value="1000" placeholder="Enter a number">
     <button id="clickme" onclick="generate">Generate</button>
       </div>
+      <details>
+          <summary>Vocab data from selected vocab level</summary>
+          <div id="vocab-data"></div>
+      </details>
   </div>
   <div class="contents">
   <p class='verse greek'><sup>1</sup> <span class="wrapper" x-count="427"><span class="word visible" >Ἦσαν</span><span class="gloss hidden">There were</span></span> <span class="wrapper" x-count="2779"><span class="word visible" >δὲ</span><span class="gloss hidden">now</span></span> <span class="wrapper" x-count="2733"><span class="word visible" >ἐν</span><span class="gloss hidden">in</span></span> <span class="wrapper" x-count="18"><span class="word visible" >Ἀντιοχείᾳ</span><span class="gloss hidden">Antioch</span></span> <span class="wrapper" x-count="470"><span class="word visible" >κατὰ</span><span class="gloss hidden">in</span></span> <span class="wrapper" x-count="19787"><span class="word visible" >τὴν</span><span class="gloss hidden">the</span></span> <span class="wrapper" x-count="158"><span class="word visible" >οὖσαν</span><span class="gloss hidden">being [there]</span></span> <span class="wrapper" x-count="114"><span class="word visible" >ἐκκλησίαν</span><span class="gloss hidden">church</span></span> <span class="wrapper" x-count="144"><span class="word visible" >προφῆται</span><span class="gloss hidden">prophets</span></span> <span class="wrapper" x-count="8982"><span class="word visible" >καὶ</span><span class="gloss hidden">and</span></span> <span class="wrapper" x-count="59"><span class="word visible" >διδάσκαλοι</span><span class="gloss hidden">teachers</span></span> <span class="wrapper" x-count="19787"><span class="word visible" >ὅ</span><span class="gloss hidden">-</span></span> <span class="wrapper" x-count="214"><span class="word visible" >τε</span><span class="gloss hidden">both</span></span> <span class="wrapper" x-count="28"><span class="word visible" >Βαρναβᾶς</span><span class="gloss hidden">Barnabas</span></span> <span class="wrapper" x-count="8982"><span class="word visible" >καὶ</span><span class="gloss hidden">and</span></span> <span class="wrapper" x-count="7"><span class="word visible" >Συμεὼν</span><span class="gloss hidden">Simeon</span></span> <span class="wrapper" x-count="19787"><span class="word visible" >ὁ</span><span class="gloss hidden">who</span></span> <span class="wrapper" x-count="148"><span class="word visible" >καλούμενος</span><span class="gloss hidden">was called</span></span> <span class="wrapper" x-count="1"><span class="word visible" >Νίγερ</span><span class="gloss hidden">Niger</span></span> <span class="wrapper" x-count="8982"><span class="word visible" >καὶ</span><span class="gloss hidden">and</span></span> <span class="wrapper" x-count="2"><span class="word visible" >Λούκιος</span><span class="gloss hidden">Lucius</span></span> <span class="wrapper" x-count="19787"><span class="word visible" >ὁ</span><span class="gloss hidden">the</span></span> <span class="wrapper" x-count="6"><span class="word visible" >Κυρηναῖος</span><span class="gloss hidden">Cyrenian</span></span> <span class="wrapper" x-count="1"><span class="word visible" >Μαναήν</span><span class="gloss hidden">Manaen</span></span> <span class="wrapper" x-count="214"><span class="word visible" >τε</span><span class="gloss hidden">also</span></span> <span class="wrapper" x-count="43"><span class="word visible" >Ἡρῴδου</span><span class="gloss hidden">Herod</span></span> <span class="wrapper" x-count="19787"><span class="word visible" >τοῦ</span><span class="gloss hidden">the</span></span> <span class="wrapper" x-count="4"><span class="word visible" >τετραάρχου</span><span class="gloss hidden">tetrarch</span></span> <span class="wrapper" x-count="1"><span class="word visible" >σύντροφος</span><span class="gloss hidden">brought up with</span></span> <span class="wrapper" x-count="8982"><span class="word visible" >καὶ</span><span class="gloss hidden">and</span></span> <span class="wrapper" x-count="15"><span class="word visible" >Σαῦλος</span><span class="gloss hidden">Saul</span></span></p>
@@ -71,15 +75,48 @@
 <p class='verse greek'><sup>52</sup> <span class="wrapper" x-count="19787"><span class="word visible" >οἵ</span><span class="gloss hidden">-</span></span> <span class="wrapper" x-count="214"><span class="word visible" >τε</span><span class="gloss hidden">and</span></span> <span class="wrapper" x-count="262"><span class="word visible" >μαθηταὶ</span><span class="gloss hidden">the disciples</span></span> <span class="wrapper" x-count="86"><span class="word visible" >ἐπληροῦντο</span><span class="gloss hidden">were filled</span></span> <span class="wrapper" x-count="59"><span class="word visible" >χαρᾶς</span><span class="gloss hidden">with joy</span></span> <span class="wrapper" x-count="8982"><span class="word visible" >καὶ</span><span class="gloss hidden">and [the]</span></span> <span class="wrapper" x-count="379"><span class="word visible" >πνεύματος</span><span class="gloss hidden">Spirit</span></span> <span class="wrapper" x-count="222"><span class="word visible" >ἁγίου</span><span class="gloss hidden">Holy</span></span></p>
   </div>
  <script>
+      const SKEY = 'minVal';
+      const DEFAULT = 1000;
       const level = document.getElementById('vocabMin');
+      window.onload = function() {
+          console.log('loading');
+           const freq = sessionStorage.getItem(SKEY);
+          if (freq !== null) {
+              level.value = freq;
+          } else {
+              sessionStorage.setItem(SKEY, DEFAULT);
+              level.value = DEFAULT;
+          }
+      }
+      level.addEventListener('change', function() {
+          const val = parseInt(this.value);
+          sessionStorage.setItem(SKEY, val);
+      });
+      const vdata = document.getElementById('vocab-data');
+     function getHighest(mySet) {
+        let highestNumber = null;
+
+        for (const number of mySet) {
+          if (highestNumber === null || number > highestNumber) {
+            highestNumber = number;
+          }
+        }
+        return highestNumber;       
+     }
     function generate() {
+        vdata.innerHTML = '';
         console.log('generating');
+        const at_leves = [];
         const wrappers = document.querySelectorAll('.wrapper');
-        const batas = parseInt(level.value) + 1;
+        const batas = parseInt(sessionStorage.getItem(SKEY)) + 1;
+        const values =  new Set();
         for (const elem of wrappers) {
             const source = elem.querySelector('.gloss');
             const tgt = elem.querySelector('.word');
-            if(parseInt(elem.getAttribute('x-count')) < batas) {
+            const elem_count = parseInt(elem.getAttribute('x-count'))
+             
+            if (elem_count < batas) {
+                values.add(elem_count);
                 source.classList.add('visible');
                 source.classList.remove('hidden');
                 tgt.classList.add('hidden');
@@ -90,8 +127,25 @@
                 source.classList.add('hidden');
                 source.classList.remove('visible');
             }
+            if (elem_count === batas - 1) {
+                at_leves.push([tgt.textContent, source.textContent]);
+            }
         }
-
+        const vocabularyListUl = document.createElement("ul");
+        //console.log(at_leves);
+        for (const word of at_leves) {
+            const vocabularyListItem = document.createElement("li");
+            vocabularyListItem.textContent = word[0] + ' ' + word[1];
+            vocabularyListUl.appendChild(vocabularyListItem);
+        }
+        console.log(values);
+        const closest = getHighest(values);
+        if (closest !== batas){
+            const highVal = document.createElement("li");
+            highVal.textContent = "Closest frequency value in chapter is: " + closest;
+            vocabularyListUl.appendChild(highVal);
+        }
+        vdata.appendChild(vocabularyListUl);
     }
       document.getElementById('clickme').addEventListener("click", generate);
 

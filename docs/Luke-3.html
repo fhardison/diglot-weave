@@ -15,6 +15,10 @@
     <input type="number" id="vocabMin" name="vocabMin" min="0" value="1000" placeholder="Enter a number">
     <button id="clickme" onclick="generate">Generate</button>
       </div>
+      <details>
+          <summary>Vocab data from selected vocab level</summary>
+          <div id="vocab-data"></div>
+      </details>
   </div>
   <div class="contents">
   <p class='verse greek'><sup>1</sup> <span class="wrapper" x-count="2733"><span class="word visible" >Ἐν</span><span class="gloss hidden">In</span></span> <span class="wrapper" x-count="49"><span class="word visible" >ἔτει</span><span class="gloss hidden">year</span></span> <span class="wrapper" x-count="2779"><span class="word visible" >δὲ</span><span class="gloss hidden">then</span></span> <span class="wrapper" x-count="1"><span class="word visible" >πεντεκαιδεκάτῳ</span><span class="gloss hidden">fifteenth</span></span> <span class="wrapper" x-count="19787"><span class="word visible" >τῆς</span><span class="gloss hidden">of the</span></span> <span class="wrapper" x-count="1"><span class="word visible" >ἡγεμονίας</span><span class="gloss hidden">reign</span></span> <span class="wrapper" x-count="1"><span class="word visible" >Τιβερίου</span><span class="gloss hidden">of Tiberius</span></span> <span class="wrapper" x-count="29"><span class="word visible" >Καίσαρος</span><span class="gloss hidden">Caesar</span></span> <span class="wrapper" x-count="2"><span class="word visible" >ἡγεμονεύοντος</span><span class="gloss hidden">being governor</span></span> <span class="wrapper" x-count="3"><span class="word visible" >Ποντίου</span><span class="gloss hidden">Pontius</span></span> <span class="wrapper" x-count="55"><span class="word visible" >Πιλάτου</span><span class="gloss hidden">Pilate</span></span> <span class="wrapper" x-count="19787"><span class="word visible" >τῆς</span><span class="gloss hidden">-</span></span> <span class="wrapper" x-count="44"><span class="word visible" >Ἰουδαίας</span><span class="gloss hidden">of Judea</span></span> <span class="wrapper" x-count="8982"><span class="word visible" >καὶ</span><span class="gloss hidden">and</span></span> <span class="wrapper" x-count="3"><span class="word visible" >τετρααρχοῦντος</span><span class="gloss hidden">being tetrarch</span></span> <span class="wrapper" x-count="19787"><span class="word visible" >τῆς</span><span class="gloss hidden">-</span></span> <span class="wrapper" x-count="61"><span class="word visible" >Γαλιλαίας</span><span class="gloss hidden">of Galilee</span></span> <span class="wrapper" x-count="43"><span class="word visible" >Ἡρῴδου</span><span class="gloss hidden">Herod</span></span> <span class="wrapper" x-count="36"><span class="word visible" >Φιλίππου</span><span class="gloss hidden">Philip</span></span> <span class="wrapper" x-count="2779"><span class="word visible" >δὲ</span><span class="gloss hidden">now</span></span> <span class="wrapper" x-count="19787"><span class="word visible" >τοῦ</span><span class="gloss hidden">the</span></span> <span class="wrapper" x-count="342"><span class="word visible" >ἀδελφοῦ</span><span class="gloss hidden">brother</span></span> <span class="wrapper" x-count="5069"><span class="word visible" >αὐτοῦ</span><span class="gloss hidden">of him</span></span> <span class="wrapper" x-count="3"><span class="word visible" >τετρααρχοῦντος</span><span class="gloss hidden">being tetrarch</span></span> <span class="wrapper" x-count="19787"><span class="word visible" >τῆς</span><span class="gloss hidden">-</span></span> <span class="wrapper" x-count="1"><span class="word visible" >Ἰτουραίας</span><span class="gloss hidden">of Ituraea</span></span> <span class="wrapper" x-count="8982"><span class="word visible" >καὶ</span><span class="gloss hidden">and</span></span> <span class="wrapper" x-count="1"><span class="word visible" >Τραχωνίτιδος</span><span class="gloss hidden">of Trachonitis</span></span> <span class="wrapper" x-count="28"><span class="word visible" >χώρας</span><span class="gloss hidden">[the] region</span></span> <span class="wrapper" x-count="8982"><span class="word visible" >καὶ</span><span class="gloss hidden">and</span></span> <span class="wrapper" x-count="1"><span class="word visible" >Λυσανίου</span><span class="gloss hidden">Lysanias</span></span> <span class="wrapper" x-count="19787"><span class="word visible" >τῆς</span><span class="gloss hidden">-</span></span> <span class="wrapper" x-count="1"><span class="word visible" >Ἀβιληνῆς</span><span class="gloss hidden">of Abilene</span></span> <span class="wrapper" x-count="3"><span class="word visible" >τετρααρχοῦντος</span><span class="gloss hidden">being tetrarch</span></span></p>
@@ -57,15 +61,48 @@
 <p class='verse greek'><sup>38</sup> <span class="wrapper" x-count="19787"><span class="word visible" >τοῦ</span><span class="gloss hidden">-</span></span> <span class="wrapper" x-count="1"><span class="word visible" >Ἐνὼς</span><span class="gloss hidden">of Enosh</span></span> <span class="wrapper" x-count="19787"><span class="word visible" >τοῦ</span><span class="gloss hidden">-</span></span> <span class="wrapper" x-count="1"><span class="word visible" >Σὴθ</span><span class="gloss hidden">of Seth</span></span> <span class="wrapper" x-count="19787"><span class="word visible" >τοῦ</span><span class="gloss hidden">-</span></span> <span class="wrapper" x-count="9"><span class="word visible" >Ἀδὰμ</span><span class="gloss hidden">of Adam</span></span> <span class="wrapper" x-count="19787"><span class="word visible" >τοῦ</span><span class="gloss hidden">-</span></span> <span class="wrapper" x-count="1307"><span class="word visible" >θεοῦ</span><span class="gloss hidden">of God</span></span></p>
   </div>
  <script>
+      const SKEY = 'minVal';
+      const DEFAULT = 1000;
       const level = document.getElementById('vocabMin');
+      window.onload = function() {
+          console.log('loading');
+           const freq = sessionStorage.getItem(SKEY);
+          if (freq !== null) {
+              level.value = freq;
+          } else {
+              sessionStorage.setItem(SKEY, DEFAULT);
+              level.value = DEFAULT;
+          }
+      }
+      level.addEventListener('change', function() {
+          const val = parseInt(this.value);
+          sessionStorage.setItem(SKEY, val);
+      });
+      const vdata = document.getElementById('vocab-data');
+     function getHighest(mySet) {
+        let highestNumber = null;
+
+        for (const number of mySet) {
+          if (highestNumber === null || number > highestNumber) {
+            highestNumber = number;
+          }
+        }
+        return highestNumber;       
+     }
     function generate() {
+        vdata.innerHTML = '';
         console.log('generating');
+        const at_leves = [];
         const wrappers = document.querySelectorAll('.wrapper');
-        const batas = parseInt(level.value) + 1;
+        const batas = parseInt(sessionStorage.getItem(SKEY)) + 1;
+        const values =  new Set();
         for (const elem of wrappers) {
             const source = elem.querySelector('.gloss');
             const tgt = elem.querySelector('.word');
-            if(parseInt(elem.getAttribute('x-count')) < batas) {
+            const elem_count = parseInt(elem.getAttribute('x-count'))
+             
+            if (elem_count < batas) {
+                values.add(elem_count);
                 source.classList.add('visible');
                 source.classList.remove('hidden');
                 tgt.classList.add('hidden');
@@ -76,8 +113,25 @@
                 source.classList.add('hidden');
                 source.classList.remove('visible');
             }
+            if (elem_count === batas - 1) {
+                at_leves.push([tgt.textContent, source.textContent]);
+            }
         }
-
+        const vocabularyListUl = document.createElement("ul");
+        //console.log(at_leves);
+        for (const word of at_leves) {
+            const vocabularyListItem = document.createElement("li");
+            vocabularyListItem.textContent = word[0] + ' ' + word[1];
+            vocabularyListUl.appendChild(vocabularyListItem);
+        }
+        console.log(values);
+        const closest = getHighest(values);
+        if (closest !== batas){
+            const highVal = document.createElement("li");
+            highVal.textContent = "Closest frequency value in chapter is: " + closest;
+            vocabularyListUl.appendChild(highVal);
+        }
+        vdata.appendChild(vocabularyListUl);
     }
       document.getElementById('clickme').addEventListener("click", generate);
 

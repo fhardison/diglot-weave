@@ -15,6 +15,10 @@
     <input type="number" id="vocabMin" name="vocabMin" min="0" value="1000" placeholder="Enter a number">
     <button id="clickme" onclick="generate">Generate</button>
       </div>
+      <details>
+          <summary>Vocab data from selected vocab level</summary>
+          <div id="vocab-data"></div>
+      </details>
   </div>
   <div class="contents">
   <p class='verse greek'><sup>1</sup> <span class="wrapper" x-count="333"><span class="word visible" >Περὶ</span><span class="gloss hidden">Concerning</span></span> <span class="wrapper" x-count="178"><span class="word visible" >μὲν</span><span class="gloss hidden">now</span></span> <span class="wrapper" x-count="1038"><span class="word visible" >γὰρ</span><span class="gloss hidden">for</span></span> <span class="wrapper" x-count="19787"><span class="word visible" >τῆς</span><span class="gloss hidden">the</span></span> <span class="wrapper" x-count="34"><span class="word visible" >διακονίας</span><span class="gloss hidden">service</span></span> <span class="wrapper" x-count="19787"><span class="word visible" >τῆς</span><span class="gloss hidden">-</span></span> <span class="wrapper" x-count="1764"><span class="word visible" >εἰς</span><span class="gloss hidden">for</span></span> <span class="wrapper" x-count="19787"><span class="word visible" >τοὺς</span><span class="gloss hidden">the</span></span> <span class="wrapper" x-count="222"><span class="word visible" >ἁγίους</span><span class="gloss hidden">saints</span></span> <span class="wrapper" x-count="10"><span class="word visible" >περισσόν</span><span class="gloss hidden">superfluous</span></span> <span class="wrapper" x-count="225"><span class="word visible" >μοί</span><span class="gloss hidden">for me</span></span> <span class="wrapper" x-count="896"><span class="word visible" >ἐστιν</span><span class="gloss hidden">it is</span></span> <span class="wrapper" x-count="19787"><span class="word visible" >τὸ</span><span class="gloss hidden">-</span></span> <span class="wrapper" x-count="192"><span class="word visible" >γράφειν</span><span class="gloss hidden">to write</span></span> <span class="wrapper" x-count="607"><span class="word visible" >ὑμῖν</span><span class="gloss hidden">to you</span></span></p>
@@ -34,15 +38,48 @@
 <p class='verse greek'><sup>15</sup> <span class="wrapper" x-count="156"><span class="word visible" >χάρις</span><span class="gloss hidden">Thanks [be]</span></span> <span class="wrapper" x-count="19787"><span class="word visible" >τῷ</span><span class="gloss hidden">-</span></span> <span class="wrapper" x-count="1307"><span class="word visible" >θεῷ</span><span class="gloss hidden">to God</span></span> <span class="wrapper" x-count="888"><span class="word visible" >ἐπὶ</span><span class="gloss hidden">for</span></span> <span class="wrapper" x-count="19787"><span class="word visible" >τῇ</span><span class="gloss hidden">the</span></span> <span class="wrapper" x-count="1"><span class="word visible" >ἀνεκδιηγήτῳ</span><span class="gloss hidden">indescribable</span></span> <span class="wrapper" x-count="5069"><span class="word visible" >αὐτοῦ</span><span class="gloss hidden">of Him</span></span> <span class="wrapper" x-count="11"><span class="word visible" >δωρεᾷ</span><span class="gloss hidden">gift</span></span></p>
   </div>
  <script>
+      const SKEY = 'minVal';
+      const DEFAULT = 1000;
       const level = document.getElementById('vocabMin');
+      window.onload = function() {
+          console.log('loading');
+           const freq = sessionStorage.getItem(SKEY);
+          if (freq !== null) {
+              level.value = freq;
+          } else {
+              sessionStorage.setItem(SKEY, DEFAULT);
+              level.value = DEFAULT;
+          }
+      }
+      level.addEventListener('change', function() {
+          const val = parseInt(this.value);
+          sessionStorage.setItem(SKEY, val);
+      });
+      const vdata = document.getElementById('vocab-data');
+     function getHighest(mySet) {
+        let highestNumber = null;
+
+        for (const number of mySet) {
+          if (highestNumber === null || number > highestNumber) {
+            highestNumber = number;
+          }
+        }
+        return highestNumber;       
+     }
     function generate() {
+        vdata.innerHTML = '';
         console.log('generating');
+        const at_leves = [];
         const wrappers = document.querySelectorAll('.wrapper');
-        const batas = parseInt(level.value) + 1;
+        const batas = parseInt(sessionStorage.getItem(SKEY)) + 1;
+        const values =  new Set();
         for (const elem of wrappers) {
             const source = elem.querySelector('.gloss');
             const tgt = elem.querySelector('.word');
-            if(parseInt(elem.getAttribute('x-count')) < batas) {
+            const elem_count = parseInt(elem.getAttribute('x-count'))
+             
+            if (elem_count < batas) {
+                values.add(elem_count);
                 source.classList.add('visible');
                 source.classList.remove('hidden');
                 tgt.classList.add('hidden');
@@ -53,8 +90,25 @@
                 source.classList.add('hidden');
                 source.classList.remove('visible');
             }
+            if (elem_count === batas - 1) {
+                at_leves.push([tgt.textContent, source.textContent]);
+            }
         }
-
+        const vocabularyListUl = document.createElement("ul");
+        //console.log(at_leves);
+        for (const word of at_leves) {
+            const vocabularyListItem = document.createElement("li");
+            vocabularyListItem.textContent = word[0] + ' ' + word[1];
+            vocabularyListUl.appendChild(vocabularyListItem);
+        }
+        console.log(values);
+        const closest = getHighest(values);
+        if (closest !== batas){
+            const highVal = document.createElement("li");
+            highVal.textContent = "Closest frequency value in chapter is: " + closest;
+            vocabularyListUl.appendChild(highVal);
+        }
+        vdata.appendChild(vocabularyListUl);
     }
       document.getElementById('clickme').addEventListener("click", generate);
 

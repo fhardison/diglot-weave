@@ -15,6 +15,10 @@
     <input type="number" id="vocabMin" name="vocabMin" min="0" value="1000" placeholder="Enter a number">
     <button id="clickme" onclick="generate">Generate</button>
       </div>
+      <details>
+          <summary>Vocab data from selected vocab level</summary>
+          <div id="vocab-data"></div>
+      </details>
   </div>
   <div class="contents">
   <p class='verse hebrew'><sup>1</sup> <span class="wrapper" x-count="336"><span class="word visible" dir="rtl">סָבִיב</span><span class="gloss hidden">all around</span></span> <span class="wrapper" x-count="6"><span class="word visible" dir="rtl">דָּיֵק</span><span class="gloss hidden">siege works</span></span> <span class="wrapper" x-count="3116"><span class="word visible" dir="rtl">הָ</span><span class="gloss hidden">it</span></span> <span class="wrapper" x-count="5768"><span class="word visible" dir="rtl">עָלֶי</span><span class="gloss hidden">against</span></span> <span class="wrapper" x-count="376"><span class="word visible" dir="rtl">יִּבְנוּ</span><span class="gloss hidden">built</span></span> <span class="wrapper" x-count="50272"><span class="word visible" dir="rtl">וַ</span><span class="gloss hidden">and</span></span> <span class="wrapper" x-count="3116"><span class="word visible" dir="rtl">הָ</span><span class="gloss hidden">it</span></span> <span class="wrapper" x-count="5768"><span class="word visible" dir="rtl">עָלֶי</span><span class="gloss hidden">to</span></span> <span class="wrapper" x-count="143"><span class="word visible" dir="rtl">יִּחַן</span><span class="gloss hidden">laid siege</span></span> <span class="wrapper" x-count="50272"><span class="word visible" dir="rtl">וַ</span><span class="gloss hidden">and</span></span> <span class="wrapper" x-count="643"><span class="word visible" dir="rtl">יְרוּשָׁלִַם</span><span class="gloss hidden">Jerusalem</span></span> <span class="wrapper" x-count="5768"><span class="word visible" dir="rtl">עַל</span><span class="gloss hidden">against</span></span> <span class="wrapper" x-count="11950"><span class="word visible" dir="rtl">וֹ</span><span class="gloss hidden">his</span></span> <span class="wrapper" x-count="245"><span class="word visible" dir="rtl">חֵיל</span><span class="gloss hidden">army</span></span> <span class="wrapper" x-count="5412"><span class="word visible" dir="rtl">כָל</span><span class="gloss hidden">all</span></span> <span class="wrapper" x-count="50272"><span class="word visible" dir="rtl">וְ</span><span class="gloss hidden">and</span></span> <span class="wrapper" x-count="1394"><span class="word visible" dir="rtl">הוּא</span><span class="gloss hidden">he</span></span> <span class="wrapper" x-count="262"><span class="word visible" dir="rtl">בָּבֶל</span><span class="gloss hidden">Babylon</span></span> <span class="wrapper" x-count="2523"><span class="word visible" dir="rtl">מֶלֶךְ</span><span class="gloss hidden">king</span></span> <span class="wrapper" x-count="60"><span class="word visible" dir="rtl">נְבֻכַדְנֶאצַּר</span><span class="gloss hidden">Nebuchadnezzar</span></span> <span class="wrapper" x-count="2558"><span class="word visible" dir="rtl">בָּא</span><span class="gloss hidden">came</span></span> <span class="wrapper" x-count="283"><span class="word visible" dir="rtl">חֹדֶשׁ</span><span class="gloss hidden">month</span></span> <span class="wrapper" x-count="20378"><span class="word visible" dir="rtl">לַ</span><span class="gloss hidden">of</span></span> <span class="wrapper" x-count="16"><span class="word visible" dir="rtl">עָשׂוֹר</span><span class="gloss hidden">tenth</span></span> <span class="wrapper" x-count="15539"><span class="word visible" dir="rtl">בֶּ</span><span class="gloss hidden">on</span></span> <span class="wrapper" x-count="29"><span class="word visible" dir="rtl">עֲשִׂירִי</span><span class="gloss hidden">tenth</span></span> <span class="wrapper" x-count="23887"><span class="word visible" dir="rtl">הָ</span><span class="gloss hidden">the</span></span> <span class="wrapper" x-count="283"><span class="word visible" dir="rtl">חֹדֶשׁ</span><span class="gloss hidden">month</span></span> <span class="wrapper" x-count="15539"><span class="word visible" dir="rtl">בַּ</span><span class="gloss hidden">in</span></span> <span class="wrapper" x-count="11950"><span class="word visible" dir="rtl">וֹ</span><span class="gloss hidden">his</span></span> <span class="wrapper" x-count="347"><span class="word visible" dir="rtl">מָלְכ</span><span class="gloss hidden">reign</span></span> <span class="wrapper" x-count="20378"><span class="word visible" dir="rtl">לְ</span><span class="gloss hidden">of</span></span> <span class="wrapper" x-count="18"><span class="word visible" dir="rtl">תְּשִׁיעִית</span><span class="gloss hidden">ninth</span></span> <span class="wrapper" x-count="23887"><span class="word visible" dir="rtl">הַ</span><span class="gloss hidden">the</span></span> <span class="wrapper" x-count="876"><span class="word visible" dir="rtl">שְׁנַת</span><span class="gloss hidden">year</span></span> <span class="wrapper" x-count="15539"><span class="word visible" dir="rtl">בִ</span><span class="gloss hidden">in</span></span> <span class="wrapper" x-count="3561"><span class="word visible" dir="rtl">יְהִי</span><span class="gloss hidden">happened</span></span> <span class="wrapper" x-count="50272"><span class="word visible" dir="rtl">וַ</span><span class="gloss hidden">so</span></span></p>
@@ -49,15 +53,48 @@
 <p class='verse hebrew'><sup>30</sup> <span class="wrapper" x-count="11950"><span class="word visible" dir="rtl">ו</span><span class="gloss hidden">his</span></span> <span class="wrapper" x-count="267"><span class="word visible" dir="rtl">חַיָּ</span><span class="gloss hidden">life</span></span> <span class="wrapper" x-count="2302"><span class="word visible" dir="rtl">יְמֵי</span><span class="gloss hidden">days</span></span> <span class="wrapper" x-count="5412"><span class="word visible" dir="rtl">כֹּל</span><span class="gloss hidden">all</span></span> <span class="wrapper" x-count="11950"><span class="word visible" dir="rtl">וֹ</span><span class="gloss hidden">his</span></span> <span class="wrapper" x-count="2302"><span class="word visible" dir="rtl">יוֹמ</span><span class="gloss hidden">day</span></span> <span class="wrapper" x-count="15539"><span class="word visible" dir="rtl">בְּ</span><span class="gloss hidden">by</span></span> <span class="wrapper" x-count="2302"><span class="word visible" dir="rtl">יוֹם</span><span class="gloss hidden">day</span></span> <span class="wrapper" x-count="1441"><span class="word visible" dir="rtl">דְּבַר</span><span class="gloss hidden">portion</span></span> <span class="wrapper" x-count="2523"><span class="word visible" dir="rtl">מֶּלֶךְ</span><span class="gloss hidden">king</span></span> <span class="wrapper" x-count="23887"><span class="word visible" dir="rtl">הַ</span><span class="gloss hidden">the</span></span> <span class="wrapper" x-count="926"><span class="word visible" dir="rtl">אֵת</span><span class="gloss hidden"></span></span> <span class="wrapper" x-count="7559"><span class="word visible" dir="rtl">מֵ</span><span class="gloss hidden">from</span></span> <span class="wrapper" x-count="11950"><span class="word visible" dir="rtl">וֹ</span><span class="gloss hidden">him</span></span> <span class="wrapper" x-count="20378"><span class="word visible" dir="rtl">לּ</span><span class="gloss hidden">to</span></span> <span class="wrapper" x-count="2009"><span class="word visible" dir="rtl">נִתְּנָה</span><span class="gloss hidden">given</span></span> <span class="wrapper" x-count="104"><span class="word visible" dir="rtl">תָּמִיד</span><span class="gloss hidden">regular</span></span> <span class="wrapper" x-count="6"><span class="word visible" dir="rtl">אֲרֻחַת</span><span class="gloss hidden">allowance</span></span> <span class="wrapper" x-count="11950"><span class="word visible" dir="rtl">וֹ</span><span class="gloss hidden">his</span></span> <span class="wrapper" x-count="6"><span class="word visible" dir="rtl">אֲרֻחָת</span><span class="gloss hidden">allowance</span></span> <span class="wrapper" x-count="50272"><span class="word visible" dir="rtl">וַ</span><span class="gloss hidden">and</span></span></p>
   </div>
  <script>
+      const SKEY = 'minVal';
+      const DEFAULT = 1000;
       const level = document.getElementById('vocabMin');
+      window.onload = function() {
+          console.log('loading');
+           const freq = sessionStorage.getItem(SKEY);
+          if (freq !== null) {
+              level.value = freq;
+          } else {
+              sessionStorage.setItem(SKEY, DEFAULT);
+              level.value = DEFAULT;
+          }
+      }
+      level.addEventListener('change', function() {
+          const val = parseInt(this.value);
+          sessionStorage.setItem(SKEY, val);
+      });
+      const vdata = document.getElementById('vocab-data');
+     function getHighest(mySet) {
+        let highestNumber = null;
+
+        for (const number of mySet) {
+          if (highestNumber === null || number > highestNumber) {
+            highestNumber = number;
+          }
+        }
+        return highestNumber;       
+     }
     function generate() {
+        vdata.innerHTML = '';
         console.log('generating');
+        const at_leves = [];
         const wrappers = document.querySelectorAll('.wrapper');
-        const batas = parseInt(level.value) + 1;
+        const batas = parseInt(sessionStorage.getItem(SKEY)) + 1;
+        const values =  new Set();
         for (const elem of wrappers) {
             const source = elem.querySelector('.gloss');
             const tgt = elem.querySelector('.word');
-            if(parseInt(elem.getAttribute('x-count')) < batas) {
+            const elem_count = parseInt(elem.getAttribute('x-count'))
+             
+            if (elem_count < batas) {
+                values.add(elem_count);
                 source.classList.add('visible');
                 source.classList.remove('hidden');
                 tgt.classList.add('hidden');
@@ -68,8 +105,25 @@
                 source.classList.add('hidden');
                 source.classList.remove('visible');
             }
+            if (elem_count === batas - 1) {
+                at_leves.push([tgt.textContent, source.textContent]);
+            }
         }
-
+        const vocabularyListUl = document.createElement("ul");
+        //console.log(at_leves);
+        for (const word of at_leves) {
+            const vocabularyListItem = document.createElement("li");
+            vocabularyListItem.textContent = word[0] + ' ' + word[1];
+            vocabularyListUl.appendChild(vocabularyListItem);
+        }
+        console.log(values);
+        const closest = getHighest(values);
+        if (closest !== batas){
+            const highVal = document.createElement("li");
+            highVal.textContent = "Closest frequency value in chapter is: " + closest;
+            vocabularyListUl.appendChild(highVal);
+        }
+        vdata.appendChild(vocabularyListUl);
     }
       document.getElementById('clickme').addEventListener("click", generate);
 

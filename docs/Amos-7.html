@@ -15,6 +15,10 @@
     <input type="number" id="vocabMin" name="vocabMin" min="0" value="1000" placeholder="Enter a number">
     <button id="clickme" onclick="generate">Generate</button>
       </div>
+      <details>
+          <summary>Vocab data from selected vocab level</summary>
+          <div id="vocab-data"></div>
+      </details>
   </div>
   <div class="contents">
   <p class='verse hebrew'><sup>1</sup> <span class="wrapper" x-count="2523"><span class="word visible" dir="rtl">מֶּלֶךְ</span><span class="gloss hidden">king’s</span></span> <span class="wrapper" x-count="23887"><span class="word visible" dir="rtl">הַ</span><span class="gloss hidden">the</span></span> <span class="wrapper" x-count="4"><span class="word visible" dir="rtl">גִּזֵּי</span><span class="gloss hidden">mowings</span></span> <span class="wrapper" x-count="720"><span class="word visible" dir="rtl">אַחַר</span><span class="gloss hidden">after</span></span> <span class="wrapper" x-count="2"><span class="word visible" dir="rtl">לֶקֶשׁ</span><span class="gloss hidden">latter growth</span></span> <span class="wrapper" x-count="1059"><span class="word visible" dir="rtl">הִנֵּה</span><span class="gloss hidden">behold</span></span> <span class="wrapper" x-count="50272"><span class="word visible" dir="rtl">וְ</span><span class="gloss hidden">and</span></span> <span class="wrapper" x-count="2"><span class="word visible" dir="rtl">לָּקֶשׁ</span><span class="gloss hidden">spring crop</span></span> <span class="wrapper" x-count="23887"><span class="word visible" dir="rtl">הַ</span><span class="gloss hidden">the</span></span> <span class="wrapper" x-count="889"><span class="word visible" dir="rtl">עֲלוֹת</span><span class="gloss hidden">sprout</span></span> <span class="wrapper" x-count="22"><span class="word visible" dir="rtl">תְחִלַּת</span><span class="gloss hidden">beginning</span></span> <span class="wrapper" x-count="15539"><span class="word visible" dir="rtl">בִּ</span><span class="gloss hidden">at</span></span> <span class="wrapper" x-count="2"><span class="word visible" dir="rtl">גֹּבַי</span><span class="gloss hidden">locusts</span></span> <span class="wrapper" x-count="44"><span class="word visible" dir="rtl">יוֹצֵר</span><span class="gloss hidden">forming</span></span> <span class="wrapper" x-count="1059"><span class="word visible" dir="rtl">הִנֵּה</span><span class="gloss hidden">behold</span></span> <span class="wrapper" x-count="50272"><span class="word visible" dir="rtl">וְ</span><span class="gloss hidden">and</span></span> <span class="wrapper" x-count="315"><span class="word visible" dir="rtl">יְהוִה</span><span class="gloss hidden">GOD</span></span> <span class="wrapper" x-count="7065"><span class="word visible" dir="rtl">י</span><span class="gloss hidden">my</span></span> <span class="wrapper" x-count="438"><span class="word visible" dir="rtl">אֲדֹנָ</span><span class="gloss hidden">Lord</span></span> <span class="wrapper" x-count="1169"><span class="word visible" dir="rtl">נִי</span><span class="gloss hidden">me</span></span> <span class="wrapper" x-count="1299"><span class="word visible" dir="rtl">הִרְאַ</span><span class="gloss hidden">showed</span></span> <span class="wrapper" x-count="577"><span class="word visible" dir="rtl">כֹּה</span><span class="gloss hidden">this</span></span></p>
@@ -36,15 +40,48 @@
 <p class='verse hebrew'><sup>17</sup> <span class="wrapper" x-count="11950"><span class="word visible" dir="rtl">וֹ</span><span class="gloss hidden">its</span></span> <span class="wrapper" x-count="225"><span class="word visible" dir="rtl">אַדְמָת</span><span class="gloss hidden">land</span></span> <span class="wrapper" x-count="5768"><span class="word visible" dir="rtl">עַל</span><span class="gloss hidden">on</span></span> <span class="wrapper" x-count="7559"><span class="word visible" dir="rtl">מֵ</span><span class="gloss hidden">from</span></span> <span class="wrapper" x-count="187"><span class="word visible" dir="rtl">יִגְלֶה</span><span class="gloss hidden">he will go into exile</span></span> <span class="wrapper" x-count="187"><span class="word visible" dir="rtl">גָּלֹה</span><span class="gloss hidden">to go into exile</span></span> <span class="wrapper" x-count="2506"><span class="word visible" dir="rtl">יִשְׂרָאֵל</span><span class="gloss hidden">Israel</span></span> <span class="wrapper" x-count="50272"><span class="word visible" dir="rtl">וְ</span><span class="gloss hidden">and</span></span> <span class="wrapper" x-count="843"><span class="word visible" dir="rtl">תָּמוּת</span><span class="gloss hidden">die</span></span> <span class="wrapper" x-count="88"><span class="word visible" dir="rtl">טְמֵאָה</span><span class="gloss hidden">unclean</span></span> <span class="wrapper" x-count="225"><span class="word visible" dir="rtl">אֲדָמָה</span><span class="gloss hidden">land</span></span> <span class="wrapper" x-count="5768"><span class="word visible" dir="rtl">עַל</span><span class="gloss hidden">in</span></span> <span class="wrapper" x-count="744"><span class="word visible" dir="rtl">אַתָּה</span><span class="gloss hidden">you</span></span> <span class="wrapper" x-count="50272"><span class="word visible" dir="rtl">וְ</span><span class="gloss hidden">and</span></span> <span class="wrapper" x-count="56"><span class="word visible" dir="rtl">תְּחֻלָּק</span><span class="gloss hidden">divided up</span></span> <span class="wrapper" x-count="48"><span class="word visible" dir="rtl">חֶבֶל</span><span class="gloss hidden">measuring line</span></span> <span class="wrapper" x-count="15539"><span class="word visible" dir="rtl">בַּ</span><span class="gloss hidden">with</span></span> <span class="wrapper" x-count="6970"><span class="word visible" dir="rtl">ךָ</span><span class="gloss hidden">your</span></span> <span class="wrapper" x-count="225"><span class="word visible" dir="rtl">אַדְמָתְ</span><span class="gloss hidden">land</span></span> <span class="wrapper" x-count="50272"><span class="word visible" dir="rtl">וְ</span><span class="gloss hidden">and</span></span> <span class="wrapper" x-count="434"><span class="word visible" dir="rtl">יִפֹּלוּ</span><span class="gloss hidden">fall</span></span> <span class="wrapper" x-count="413"><span class="word visible" dir="rtl">חֶרֶב</span><span class="gloss hidden">sword</span></span> <span class="wrapper" x-count="15539"><span class="word visible" dir="rtl">בַּ</span><span class="gloss hidden">by</span></span> <span class="wrapper" x-count="6970"><span class="word visible" dir="rtl">ךָ</span><span class="gloss hidden">your</span></span> <span class="wrapper" x-count="587"><span class="word visible" dir="rtl">בְנֹתֶי</span><span class="gloss hidden">daughters</span></span> <span class="wrapper" x-count="50272"><span class="word visible" dir="rtl">וּ</span><span class="gloss hidden">and</span></span> <span class="wrapper" x-count="6970"><span class="word visible" dir="rtl">ךָ</span><span class="gloss hidden">your</span></span> <span class="wrapper" x-count="4933"><span class="word visible" dir="rtl">בָנֶי</span><span class="gloss hidden">sons</span></span> <span class="wrapper" x-count="50272"><span class="word visible" dir="rtl">וּ</span><span class="gloss hidden">and</span></span> <span class="wrapper" x-count="60"><span class="word visible" dir="rtl">תִּזְנֶה</span><span class="gloss hidden">become a prostitute</span></span> <span class="wrapper" x-count="1092"><span class="word visible" dir="rtl">עִיר</span><span class="gloss hidden">city</span></span> <span class="wrapper" x-count="15539"><span class="word visible" dir="rtl">בָּ</span><span class="gloss hidden">in</span></span> <span class="wrapper" x-count="6970"><span class="word visible" dir="rtl">ךָ</span><span class="gloss hidden">your</span></span> <span class="wrapper" x-count="781"><span class="word visible" dir="rtl">אִשְׁתְּ</span><span class="gloss hidden">wife</span></span> <span class="wrapper" x-count="6513"><span class="word visible" dir="rtl">יְהוָה</span><span class="gloss hidden">LORD</span></span> <span class="wrapper" x-count="5307"><span class="word visible" dir="rtl">אָמַר</span><span class="gloss hidden">says</span></span> <span class="wrapper" x-count="577"><span class="word visible" dir="rtl">כֹּה</span><span class="gloss hidden">thus</span></span> <span class="wrapper" x-count="744"><span class="word visible" dir="rtl">כֵן</span><span class="gloss hidden"></span></span> <span class="wrapper" x-count="20378"><span class="word visible" dir="rtl">לָ</span><span class="gloss hidden"></span></span></p>
   </div>
  <script>
+      const SKEY = 'minVal';
+      const DEFAULT = 1000;
       const level = document.getElementById('vocabMin');
+      window.onload = function() {
+          console.log('loading');
+           const freq = sessionStorage.getItem(SKEY);
+          if (freq !== null) {
+              level.value = freq;
+          } else {
+              sessionStorage.setItem(SKEY, DEFAULT);
+              level.value = DEFAULT;
+          }
+      }
+      level.addEventListener('change', function() {
+          const val = parseInt(this.value);
+          sessionStorage.setItem(SKEY, val);
+      });
+      const vdata = document.getElementById('vocab-data');
+     function getHighest(mySet) {
+        let highestNumber = null;
+
+        for (const number of mySet) {
+          if (highestNumber === null || number > highestNumber) {
+            highestNumber = number;
+          }
+        }
+        return highestNumber;       
+     }
     function generate() {
+        vdata.innerHTML = '';
         console.log('generating');
+        const at_leves = [];
         const wrappers = document.querySelectorAll('.wrapper');
-        const batas = parseInt(level.value) + 1;
+        const batas = parseInt(sessionStorage.getItem(SKEY)) + 1;
+        const values =  new Set();
         for (const elem of wrappers) {
             const source = elem.querySelector('.gloss');
             const tgt = elem.querySelector('.word');
-            if(parseInt(elem.getAttribute('x-count')) < batas) {
+            const elem_count = parseInt(elem.getAttribute('x-count'))
+             
+            if (elem_count < batas) {
+                values.add(elem_count);
                 source.classList.add('visible');
                 source.classList.remove('hidden');
                 tgt.classList.add('hidden');
@@ -55,8 +92,25 @@
                 source.classList.add('hidden');
                 source.classList.remove('visible');
             }
+            if (elem_count === batas - 1) {
+                at_leves.push([tgt.textContent, source.textContent]);
+            }
         }
-
+        const vocabularyListUl = document.createElement("ul");
+        //console.log(at_leves);
+        for (const word of at_leves) {
+            const vocabularyListItem = document.createElement("li");
+            vocabularyListItem.textContent = word[0] + ' ' + word[1];
+            vocabularyListUl.appendChild(vocabularyListItem);
+        }
+        console.log(values);
+        const closest = getHighest(values);
+        if (closest !== batas){
+            const highVal = document.createElement("li");
+            highVal.textContent = "Closest frequency value in chapter is: " + closest;
+            vocabularyListUl.appendChild(highVal);
+        }
+        vdata.appendChild(vocabularyListUl);
     }
       document.getElementById('clickme').addEventListener("click", generate);
 
