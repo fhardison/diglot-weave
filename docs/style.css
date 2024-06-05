@@ -2,3 +2,4 @@
 .visible { visibility: visible; display: inline;}
 .hebrew {text-align: right;}
 .greek {text-align: left;}
+.word {font-size: 1.15em;}

@@ -5,11 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Biblical Languages diglot weave</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://matcha.mizu.sh/matcha.css">
 </head>
 <body>
    <div class="header">
       <a href="index.html">Home</a>
       <a href="hebrew-index.html">Index</a>
+      <div>
+          <span>Change font size</span>
+            <button id="font-change-down">-</button>
+            <button id="font-change-up">+</button>
+      </div>
       <div id="level">
     <label for="vocabMin">Enter vocab minimum:</label>
     <input type="number" id="vocabMin" name="vocabMin" min="0" value="1000" placeholder="Enter a number">
@@ -21,6 +27,7 @@
       </details>
   </div>
   <div class="contents">
+      <h1>Psalms 85</h1>
   <p class='verse hebrew' dir="rtl"><sup>1</sup> <span class="wrapper" x-count="20378"><span class="word visible" dir="rtl">לַ</span><span class="gloss hidden" dir="ltr">To</span></span> <span class="wrapper" x-count="65"><span class="word visible" dir="rtl">מְנַצֵּחַ</span><span class="gloss hidden" dir="ltr">Overseer</span></span> <span class="wrapper" x-count="20378"><span class="word visible" dir="rtl">לִ</span><span class="gloss hidden" dir="ltr">By</span></span> <span class="wrapper" x-count="4933"><span class="word visible" dir="rtl">בְנֵי</span><span class="gloss hidden" dir="ltr">sons_of</span></span> <span class="wrapper" x-count="37"><span class="word visible" dir="rtl">קֹרַח</span><span class="gloss hidden" dir="ltr">Korah</span></span> <span class="wrapper" x-count="57"><span class="word visible" dir="rtl">מִזְמוֹר</span><span class="gloss hidden" dir="ltr">A_Psalm</span></span></p>
 <p class='verse hebrew' dir="rtl"><sup>2</sup> <span class="wrapper" x-count="6513"><span class="word visible" dir="rtl">יְהוָה</span><span class="gloss hidden" dir="ltr">Jehovah</span></span> <span class="wrapper" x-count="48"><span class="word visible" dir="rtl">רָצִיתָ</span><span class="gloss hidden" dir="ltr">Thou_hast_accepted</span></span> <span class="wrapper" x-count="2504"><span class="word visible" dir="rtl">אַרְצֶ</span><span class="gloss hidden" dir="ltr">land</span></span> <span class="wrapper" x-count="6970"><span class="word visible" dir="rtl">ךָ</span><span class="gloss hidden" dir="ltr">Thy</span></span> <span class="wrapper" x-count="1057"><span class="word visible" dir="rtl">שַׁבְתָּ</span><span class="gloss hidden" dir="ltr">Thou_hast_turned</span></span> <span class="wrapper" x-count="5"><span class="word visible" dir="rtl">שְׁבִית</span><span class="gloss hidden" dir="ltr">captivity_of</span></span> <span class="wrapper" x-count="349"><span class="word visible" dir="rtl">יַעֲקֹב</span><span class="gloss hidden" dir="ltr">Jacob</span></span></p>
 <p class='verse hebrew' dir="rtl"><sup>3</sup> <span class="wrapper" x-count="655"><span class="word visible" dir="rtl">נָשָׂאתָ</span><span class="gloss hidden" dir="ltr">Thou_hast_borne_away</span></span> <span class="wrapper" x-count="231"><span class="word visible" dir="rtl">עֲוֺן</span><span class="gloss hidden" dir="ltr">iniquity_of</span></span> <span class="wrapper" x-count="1833"><span class="word visible" dir="rtl">עַמֶּ</span><span class="gloss hidden" dir="ltr">people</span></span> <span class="wrapper" x-count="6970"><span class="word visible" dir="rtl">ךָ</span><span class="gloss hidden" dir="ltr">Thy</span></span> <span class="wrapper" x-count="152"><span class="word visible" dir="rtl">כִּסִּיתָ</span><span class="gloss hidden" dir="ltr">Thou_hast_covered</span></span> <span class="wrapper" x-count="5412"><span class="word visible" dir="rtl">כָל</span><span class="gloss hidden" dir="ltr">all</span></span> <span class="wrapper" x-count="293"><span class="word visible" dir="rtl">חַטָּאתָ</span><span class="gloss hidden" dir="ltr">sin</span></span> <span class="wrapper" x-count="7080"><span class="word visible" dir="rtl">ם</span><span class="gloss hidden" dir="ltr">their</span></span> <span class="wrapper" x-count="74"><span class="word visible" dir="rtl">סֶלָה</span><span class="gloss hidden" dir="ltr">Selah</span></span></p>
@@ -112,6 +119,25 @@
       document.getElementById('clickme').addEventListener("click", generate);
 
     generate();
+      const button = document.getElementById('font-change-up');
+      const buttondown = document.getElementById('font-change-down');
+    const paragraphs = document.querySelectorAll('.word');
+    console.log(paragraphs);
+    button.addEventListener('click', () => {
+        console.log('uping fontSize');
+      paragraphs.forEach(paragraph => {
+        // Increase or decrease font size based on your preference
+        paragraph.style.fontSize = `${parseInt(paragraph.style.fontSize) + 2}px`; // Increase by 2px
+      });
+    });
+   buttondown.addEventListener('click', () => {
+        console.log('droping fontSize');
+      paragraphs.forEach(paragraph => {
+        // Increase or decrease font size based on your preference
+        paragraph.style.fontSize = `${parseInt(paragraph.style.fontSize) - 2}px`; // Increase by 2px
+      });
+    });
+
   </script>
 </body>
 </html>

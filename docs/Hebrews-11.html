@@ -5,11 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Biblical Languages diglot weave</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://matcha.mizu.sh/matcha.css">
 </head>
 <body>
    <div class="header">
       <a href="index.html">Home</a>
       <a href="greek-index.html">Index</a>
+      <div>
+          <span>Change font size</span>
+            <button id="font-change-down">-</button>
+            <button id="font-change-up">+</button>
+      </div>
       <div id="level">
     <label for="vocabMin">Enter vocab minimum:</label>
     <input type="number" id="vocabMin" name="vocabMin" min="0" value="1000" placeholder="Enter a number">
@@ -21,6 +27,7 @@
       </details>
   </div>
   <div class="contents">
+      <h1>Hebrews 11</h1>
   <p class='verse greek' dir="ltr"><sup>1</sup> <span class="wrapper" x-count="896"><span class="word visible" dir="ltr">Ἔστιν</span><span class="gloss hidden" dir="ltr">is</span></span> <span class="wrapper" x-count="2779"><span class="word visible" dir="ltr">δὲ</span><span class="gloss hidden" dir="ltr">Now</span></span> <span class="wrapper" x-count="242"><span class="word visible" dir="ltr">πίστις</span><span class="gloss hidden" dir="ltr">faith</span></span> <span class="wrapper" x-count="31"><span class="word visible" dir="ltr">ἐλπιζομένων</span><span class="gloss hidden" dir="ltr">of_what_we_hope_for</span></span> <span class="wrapper" x-count="5"><span class="word visible" dir="ltr">ὑπόστασις</span><span class="gloss hidden" dir="ltr">the_assurance</span></span> <span class="wrapper" x-count="11"><span class="word visible" dir="ltr">πραγμάτων</span><span class="gloss hidden" dir="ltr">of_what</span></span> <span class="wrapper" x-count="2"><span class="word visible" dir="ltr">ἔλεγχος</span><span class="gloss hidden" dir="ltr">and_the_certainty</span></span> <span class="wrapper" x-count="1621"><span class="word visible" dir="ltr">οὐ</span><span class="gloss hidden" dir="ltr">we_do_not_see</span></span> <span class="wrapper" x-count="132"><span class="word visible" dir="ltr">βλεπομένων</span><span class="gloss hidden" dir="ltr"></span></span></p>
 <p class='verse greek' dir="ltr"><sup>2</sup> <span class="wrapper" x-count="2733"><span class="word visible" dir="ltr">ἐν</span><span class="gloss hidden" dir="ltr">This_is_why</span></span> <span class="wrapper" x-count="118"><span class="word visible" dir="ltr">ταύτῃ</span><span class="gloss hidden" dir="ltr"></span></span> <span class="wrapper" x-count="1038"><span class="word visible" dir="ltr">γὰρ</span><span class="gloss hidden" dir="ltr"></span></span> <span class="wrapper" x-count="76"><span class="word visible" dir="ltr">ἐμαρτυρήθησαν</span><span class="gloss hidden" dir="ltr">were_commended</span></span> <span class="wrapper" x-count="19787"><span class="word visible" dir="ltr">οἱ</span><span class="gloss hidden" dir="ltr">the</span></span> <span class="wrapper" x-count="66"><span class="word visible" dir="ltr">πρεσβύτεροι</span><span class="gloss hidden" dir="ltr">ancients</span></span></p>
 <p class='verse greek' dir="ltr"><sup>3</sup> <span class="wrapper" x-count="242"><span class="word visible" dir="ltr">πίστει</span><span class="gloss hidden" dir="ltr">By_faith</span></span> <span class="wrapper" x-count="14"><span class="word visible" dir="ltr">νοοῦμεν</span><span class="gloss hidden" dir="ltr">we_understand_that</span></span> <span class="wrapper" x-count="13"><span class="word visible" dir="ltr">κατηρτίσθαι</span><span class="gloss hidden" dir="ltr">was_formed</span></span> <span class="wrapper" x-count="19787"><span class="word visible" dir="ltr">τοὺς</span><span class="gloss hidden" dir="ltr">the</span></span> <span class="wrapper" x-count="121"><span class="word visible" dir="ltr">αἰῶνας</span><span class="gloss hidden" dir="ltr">universe</span></span> <span class="wrapper" x-count="68"><span class="word visible" dir="ltr">ῥήματι</span><span class="gloss hidden" dir="ltr">at_God’s_command</span></span> <span class="wrapper" x-count="1307"><span class="word visible" dir="ltr">θεοῦ</span><span class="gloss hidden" dir="ltr"></span></span> <span class="wrapper" x-count="1764"><span class="word visible" dir="ltr">εἰς</span><span class="gloss hidden" dir="ltr">so_that</span></span> <span class="wrapper" x-count="19787"><span class="word visible" dir="ltr">τὸ</span><span class="gloss hidden" dir="ltr">what</span></span> <span class="wrapper" x-count="1041"><span class="word visible" dir="ltr">μὴ</span><span class="gloss hidden" dir="ltr">was_not_made</span></span> <span class="wrapper" x-count="914"><span class="word visible" dir="ltr">ἐκ</span><span class="gloss hidden" dir="ltr">out_of</span></span> <span class="wrapper" x-count="31"><span class="word visible" dir="ltr">φαινομένων</span><span class="gloss hidden" dir="ltr">was_visible</span></span> <span class="wrapper" x-count="19787"><span class="word visible" dir="ltr">τὸ</span><span class="gloss hidden" dir="ltr">what</span></span> <span class="wrapper" x-count="132"><span class="word visible" dir="ltr">βλεπόμενον</span><span class="gloss hidden" dir="ltr">is_seen</span></span> <span class="wrapper" x-count="668"><span class="word visible" dir="ltr">γεγονέναι</span><span class="gloss hidden" dir="ltr"></span></span></p>
@@ -138,6 +145,25 @@
       document.getElementById('clickme').addEventListener("click", generate);
 
     generate();
+      const button = document.getElementById('font-change-up');
+      const buttondown = document.getElementById('font-change-down');
+    const paragraphs = document.querySelectorAll('.word');
+    console.log(paragraphs);
+    button.addEventListener('click', () => {
+        console.log('uping fontSize');
+      paragraphs.forEach(paragraph => {
+        // Increase or decrease font size based on your preference
+        paragraph.style.fontSize = `${parseInt(paragraph.style.fontSize) + 2}px`; // Increase by 2px
+      });
+    });
+   buttondown.addEventListener('click', () => {
+        console.log('droping fontSize');
+      paragraphs.forEach(paragraph => {
+        // Increase or decrease font size based on your preference
+        paragraph.style.fontSize = `${parseInt(paragraph.style.fontSize) - 2}px`; // Increase by 2px
+      });
+    });
+
   </script>
 </body>
 </html>

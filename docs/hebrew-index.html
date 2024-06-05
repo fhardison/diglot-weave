@@ -5,11 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Biblical Languages diglot weave</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://matcha.mizu.sh/matcha.css">
 </head>
 <body>
    <div class="header">
       <a href="index.html">Home</a>
       <a href="hebrew-index.html">Index</a>
+      <div>
+          <span>Change font size</span>
+            <button id="font-change-down">-</button>
+            <button id="font-change-up">+</button>
+      </div>
       <div id="level">
     <label for="vocabMin">Enter vocab minimum:</label>
     <input type="number" id="vocabMin" name="vocabMin" min="0" value="1000" placeholder="Enter a number">
@@ -21,6 +27,7 @@
       </details>
   </div>
   <div class="contents">
+      <h1>$title$</h1>
   <h2>Genesis</h2>
 <a href='./Genesis-1.html'>Genesis 1</a>
 <a href='./Genesis-2.html'>Genesis 2</a>
@@ -1066,6 +1073,25 @@
       document.getElementById('clickme').addEventListener("click", generate);
 
     generate();
+      const button = document.getElementById('font-change-up');
+      const buttondown = document.getElementById('font-change-down');
+    const paragraphs = document.querySelectorAll('.word');
+    console.log(paragraphs);
+    button.addEventListener('click', () => {
+        console.log('uping fontSize');
+      paragraphs.forEach(paragraph => {
+        // Increase or decrease font size based on your preference
+        paragraph.style.fontSize = `${parseInt(paragraph.style.fontSize) + 2}px`; // Increase by 2px
+      });
+    });
+   buttondown.addEventListener('click', () => {
+        console.log('droping fontSize');
+      paragraphs.forEach(paragraph => {
+        // Increase or decrease font size based on your preference
+        paragraph.style.fontSize = `${parseInt(paragraph.style.fontSize) - 2}px`; // Increase by 2px
+      });
+    });
+
   </script>
 </body>
 </html>

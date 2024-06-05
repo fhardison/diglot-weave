@@ -5,11 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Biblical Languages diglot weave</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://matcha.mizu.sh/matcha.css">
 </head>
 <body>
    <div class="header">
       <a href="index.html">Home</a>
       <a href="hebrew-index.html">Index</a>
+      <div>
+          <span>Change font size</span>
+            <button id="font-change-down">-</button>
+            <button id="font-change-up">+</button>
+      </div>
       <div id="level">
     <label for="vocabMin">Enter vocab minimum:</label>
     <input type="number" id="vocabMin" name="vocabMin" min="0" value="1000" placeholder="Enter a number">
@@ -21,6 +27,7 @@
       </details>
   </div>
   <div class="contents">
+      <h1>Psalms 106</h1>
   <p class='verse hebrew' dir="rtl"><sup>1</sup> <span class="wrapper" x-count="146"><span class="word visible" dir="rtl">הַלְלוּ</span><span class="gloss hidden" dir="ltr">Praise_ye</span></span> <span class="wrapper" x-count="49"><span class="word visible" dir="rtl">יָהּ</span><span class="gloss hidden" dir="ltr">Jah</span></span> <span class="wrapper" x-count="111"><span class="word visible" dir="rtl">הוֹדוּ</span><span class="gloss hidden" dir="ltr">give_thanks</span></span> <span class="wrapper" x-count="20378"><span class="word visible" dir="rtl">לַ</span><span class="gloss hidden" dir="ltr">to</span></span> <span class="wrapper" x-count="6513"><span class="word visible" dir="rtl">יהוָה</span><span class="gloss hidden" dir="ltr">Jehovah</span></span> <span class="wrapper" x-count="4483"><span class="word visible" dir="rtl">כִּי</span><span class="gloss hidden" dir="ltr">For</span></span> <span class="wrapper" x-count="490"><span class="word visible" dir="rtl">טוֹב</span><span class="gloss hidden" dir="ltr">good</span></span> <span class="wrapper" x-count="4483"><span class="word visible" dir="rtl">כִּי</span><span class="gloss hidden" dir="ltr">for</span></span> <span class="wrapper" x-count="20378"><span class="word visible" dir="rtl">לְ</span><span class="gloss hidden" dir="ltr"></span></span> <span class="wrapper" x-count="439"><span class="word visible" dir="rtl">עוֹלָם</span><span class="gloss hidden" dir="ltr">to_the_age</span></span> <span class="wrapper" x-count="245"><span class="word visible" dir="rtl">חַסְדּ</span><span class="gloss hidden" dir="ltr">kindness</span></span> <span class="wrapper" x-count="11950"><span class="word visible" dir="rtl">וֹ</span><span class="gloss hidden" dir="ltr">His</span></span></p>
 <p class='verse hebrew' dir="rtl"><sup>2</sup> <span class="wrapper" x-count="423"><span class="word visible" dir="rtl">מִי</span><span class="gloss hidden" dir="ltr">Who</span></span> <span class="wrapper" x-count="4"><span class="word visible" dir="rtl">יְמַלֵּל</span><span class="gloss hidden" dir="ltr">doth_utter</span></span> <span class="wrapper" x-count="61"><span class="word visible" dir="rtl">גְּבוּרוֹת</span><span class="gloss hidden" dir="ltr">mighty_acts_of</span></span> <span class="wrapper" x-count="6513"><span class="word visible" dir="rtl">יְהוָה</span><span class="gloss hidden" dir="ltr">Jehovah</span></span> <span class="wrapper" x-count="1159"><span class="word visible" dir="rtl">יַשְׁמִיעַ</span><span class="gloss hidden" dir="ltr">Soundeth</span></span> <span class="wrapper" x-count="5412"><span class="word visible" dir="rtl">כָּל</span><span class="gloss hidden" dir="ltr">all</span></span> <span class="wrapper" x-count="57"><span class="word visible" dir="rtl">תְּהִלָּת</span><span class="gloss hidden" dir="ltr">praise</span></span> <span class="wrapper" x-count="11950"><span class="word visible" dir="rtl">וֹ</span><span class="gloss hidden" dir="ltr">His</span></span></p>
 <p class='verse hebrew' dir="rtl"><sup>3</sup> <span class="wrapper" x-count="44"><span class="word visible" dir="rtl">אַשְׁרֵי</span><span class="gloss hidden" dir="ltr">happiness</span></span> <span class="wrapper" x-count="468"><span class="word visible" dir="rtl">שֹׁמְרֵי</span><span class="gloss hidden" dir="ltr">those_keeping</span></span> <span class="wrapper" x-count="422"><span class="word visible" dir="rtl">מִשְׁפָּט</span><span class="gloss hidden" dir="ltr">judgment</span></span> <span class="wrapper" x-count="2626"><span class="word visible" dir="rtl">עֹשֵׂה</span><span class="gloss hidden" dir="ltr">Doing</span></span> <span class="wrapper" x-count="157"><span class="word visible" dir="rtl">צְדָקָה</span><span class="gloss hidden" dir="ltr">righteousness</span></span> <span class="wrapper" x-count="15539"><span class="word visible" dir="rtl">בְ</span><span class="gloss hidden" dir="ltr">at</span></span> <span class="wrapper" x-count="5412"><span class="word visible" dir="rtl">כָל</span><span class="gloss hidden" dir="ltr">all</span></span> <span class="wrapper" x-count="296"><span class="word visible" dir="rtl">עֵת</span><span class="gloss hidden" dir="ltr">times</span></span></p>
@@ -146,6 +153,25 @@
       document.getElementById('clickme').addEventListener("click", generate);
 
     generate();
+      const button = document.getElementById('font-change-up');
+      const buttondown = document.getElementById('font-change-down');
+    const paragraphs = document.querySelectorAll('.word');
+    console.log(paragraphs);
+    button.addEventListener('click', () => {
+        console.log('uping fontSize');
+      paragraphs.forEach(paragraph => {
+        // Increase or decrease font size based on your preference
+        paragraph.style.fontSize = `${parseInt(paragraph.style.fontSize) + 2}px`; // Increase by 2px
+      });
+    });
+   buttondown.addEventListener('click', () => {
+        console.log('droping fontSize');
+      paragraphs.forEach(paragraph => {
+        // Increase or decrease font size based on your preference
+        paragraph.style.fontSize = `${parseInt(paragraph.style.fontSize) - 2}px`; // Increase by 2px
+      });
+    });
+
   </script>
 </body>
 </html>

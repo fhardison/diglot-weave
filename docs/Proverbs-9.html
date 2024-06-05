@@ -5,11 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Biblical Languages diglot weave</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://matcha.mizu.sh/matcha.css">
 </head>
 <body>
    <div class="header">
       <a href="index.html">Home</a>
       <a href="hebrew-index.html">Index</a>
+      <div>
+          <span>Change font size</span>
+            <button id="font-change-down">-</button>
+            <button id="font-change-up">+</button>
+      </div>
       <div id="level">
     <label for="vocabMin">Enter vocab minimum:</label>
     <input type="number" id="vocabMin" name="vocabMin" min="0" value="1000" placeholder="Enter a number">
@@ -21,6 +27,7 @@
       </details>
   </div>
   <div class="contents">
+      <h1>Proverbs 09</h1>
   <p class='verse hebrew' dir="rtl"><sup>1</sup> <span class="wrapper" x-count="4"><span class="word visible" dir="rtl">חָכְמוֹת</span><span class="gloss hidden" dir="ltr">Wisdom</span></span> <span class="wrapper" x-count="376"><span class="word visible" dir="rtl">בָּנְתָה</span><span class="gloss hidden" dir="ltr">hath_builded</span></span> <span class="wrapper" x-count="2042"><span class="word visible" dir="rtl">בֵיתָ</span><span class="gloss hidden" dir="ltr">house</span></span> <span class="wrapper" x-count="3116"><span class="word visible" dir="rtl">הּ</span><span class="gloss hidden" dir="ltr">her</span></span> <span class="wrapper" x-count="16"><span class="word visible" dir="rtl">חָצְבָה</span><span class="gloss hidden" dir="ltr">She_hath_hewn_out</span></span> <span class="wrapper" x-count="111"><span class="word visible" dir="rtl">עַמּוּדֶי</span><span class="gloss hidden" dir="ltr">pillars</span></span> <span class="wrapper" x-count="3116"><span class="word visible" dir="rtl">הָ</span><span class="gloss hidden" dir="ltr">her</span></span> <span class="wrapper" x-count="393"><span class="word visible" dir="rtl">שִׁבְעָה</span><span class="gloss hidden" dir="ltr">seven</span></span></p>
 <p class='verse hebrew' dir="rtl"><sup>2</sup> <span class="wrapper" x-count="11"><span class="word visible" dir="rtl">טָבְחָה</span><span class="gloss hidden" dir="ltr">She_hath_slaughtered</span></span> <span class="wrapper" x-count="12"><span class="word visible" dir="rtl">טִבְחָ</span><span class="gloss hidden" dir="ltr">slaughter</span></span> <span class="wrapper" x-count="3116"><span class="word visible" dir="rtl">הּ</span><span class="gloss hidden" dir="ltr">her</span></span> <span class="wrapper" x-count="5"><span class="word visible" dir="rtl">מָסְכָה</span><span class="gloss hidden" dir="ltr">She_hath_mingled</span></span> <span class="wrapper" x-count="141"><span class="word visible" dir="rtl">יֵינָ</span><span class="gloss hidden" dir="ltr">wine</span></span> <span class="wrapper" x-count="3116"><span class="word visible" dir="rtl">הּ</span><span class="gloss hidden" dir="ltr">her</span></span> <span class="wrapper" x-count="133"><span class="word visible" dir="rtl">אַף</span><span class="gloss hidden" dir="ltr">Yea</span></span> <span class="wrapper" x-count="75"><span class="word visible" dir="rtl">עָרְכָה</span><span class="gloss hidden" dir="ltr">she_hath_arranged</span></span> <span class="wrapper" x-count="71"><span class="word visible" dir="rtl">שֻׁלְחָנָ</span><span class="gloss hidden" dir="ltr">table</span></span> <span class="wrapper" x-count="3116"><span class="word visible" dir="rtl">הּ</span><span class="gloss hidden" dir="ltr">her</span></span></p>
 <p class='verse hebrew' dir="rtl"><sup>3</sup> <span class="wrapper" x-count="847"><span class="word visible" dir="rtl">שָׁלְחָה</span><span class="gloss hidden" dir="ltr">She_hath_sent_forth</span></span> <span class="wrapper" x-count="63"><span class="word visible" dir="rtl">נַעֲרֹתֶי</span><span class="gloss hidden" dir="ltr">damsels</span></span> <span class="wrapper" x-count="3116"><span class="word visible" dir="rtl">הָ</span><span class="gloss hidden" dir="ltr">her</span></span> <span class="wrapper" x-count="733"><span class="word visible" dir="rtl">תִקְרָא</span><span class="gloss hidden" dir="ltr">She_crieth</span></span> <span class="wrapper" x-count="5768"><span class="word visible" dir="rtl">עַל</span><span class="gloss hidden" dir="ltr">on</span></span> <span class="wrapper" x-count="1"><span class="word visible" dir="rtl">גַּפֵּי</span><span class="gloss hidden" dir="ltr">tops_of</span></span> <span class="wrapper" x-count="54"><span class="word visible" dir="rtl">מְרֹמֵי</span><span class="gloss hidden" dir="ltr">high_places_of</span></span> <span class="wrapper" x-count="5"><span class="word visible" dir="rtl">קָרֶת</span><span class="gloss hidden" dir="ltr">city</span></span></p>
@@ -116,6 +123,25 @@
       document.getElementById('clickme').addEventListener("click", generate);
 
     generate();
+      const button = document.getElementById('font-change-up');
+      const buttondown = document.getElementById('font-change-down');
+    const paragraphs = document.querySelectorAll('.word');
+    console.log(paragraphs);
+    button.addEventListener('click', () => {
+        console.log('uping fontSize');
+      paragraphs.forEach(paragraph => {
+        // Increase or decrease font size based on your preference
+        paragraph.style.fontSize = `${parseInt(paragraph.style.fontSize) + 2}px`; // Increase by 2px
+      });
+    });
+   buttondown.addEventListener('click', () => {
+        console.log('droping fontSize');
+      paragraphs.forEach(paragraph => {
+        // Increase or decrease font size based on your preference
+        paragraph.style.fontSize = `${parseInt(paragraph.style.fontSize) - 2}px`; // Increase by 2px
+      });
+    });
+
   </script>
 </body>
 </html>

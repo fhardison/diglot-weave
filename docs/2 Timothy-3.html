@@ -5,11 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Biblical Languages diglot weave</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://matcha.mizu.sh/matcha.css">
 </head>
 <body>
    <div class="header">
       <a href="index.html">Home</a>
       <a href="greek-index.html">Index</a>
+      <div>
+          <span>Change font size</span>
+            <button id="font-change-down">-</button>
+            <button id="font-change-up">+</button>
+      </div>
       <div id="level">
     <label for="vocabMin">Enter vocab minimum:</label>
     <input type="number" id="vocabMin" name="vocabMin" min="0" value="1000" placeholder="Enter a number">
@@ -21,6 +27,7 @@
       </details>
   </div>
   <div class="contents">
+      <h1>2 Timothy 03</h1>
   <p class='verse greek' dir="ltr"><sup>1</sup> <span class="wrapper" x-count="318"><span class="word visible" dir="ltr">Τοῦτο</span><span class="gloss hidden" dir="ltr">this</span></span> <span class="wrapper" x-count="2779"><span class="word visible" dir="ltr">δὲ</span><span class="gloss hidden" dir="ltr">But</span></span> <span class="wrapper" x-count="221"><span class="word visible" dir="ltr">γίνωσκε</span><span class="gloss hidden" dir="ltr">understand</span></span> <span class="wrapper" x-count="1293"><span class="word visible" dir="ltr">ὅτι</span><span class="gloss hidden" dir="ltr"></span></span> <span class="wrapper" x-count="2733"><span class="word visible" dir="ltr">ἐν</span><span class="gloss hidden" dir="ltr">In</span></span> <span class="wrapper" x-count="52"><span class="word visible" dir="ltr">ἐσχάταις</span><span class="gloss hidden" dir="ltr">the_last</span></span> <span class="wrapper" x-count="389"><span class="word visible" dir="ltr">ἡμέραις</span><span class="gloss hidden" dir="ltr">days</span></span> <span class="wrapper" x-count="7"><span class="word visible" dir="ltr">ἐνστήσονται</span><span class="gloss hidden" dir="ltr">will_come</span></span> <span class="wrapper" x-count="85"><span class="word visible" dir="ltr">καιροὶ</span><span class="gloss hidden" dir="ltr">times</span></span> <span class="wrapper" x-count="2"><span class="word visible" dir="ltr">χαλεποί</span><span class="gloss hidden" dir="ltr">terrible</span></span></p>
 <p class='verse greek' dir="ltr"><sup>2</sup> <span class="wrapper" x-count="191"><span class="word visible" dir="ltr">ἔσονται</span><span class="gloss hidden" dir="ltr">will_be</span></span> <span class="wrapper" x-count="1038"><span class="word visible" dir="ltr">γὰρ</span><span class="gloss hidden" dir="ltr">For</span></span> <span class="wrapper" x-count="19787"><span class="word visible" dir="ltr">οἱ</span><span class="gloss hidden" dir="ltr"></span></span> <span class="wrapper" x-count="550"><span class="word visible" dir="ltr">ἄνθρωποι</span><span class="gloss hidden" dir="ltr">men</span></span> <span class="wrapper" x-count="1"><span class="word visible" dir="ltr">φίλαυτοι</span><span class="gloss hidden" dir="ltr">lovers_of_themselves</span></span> <span class="wrapper" x-count="2"><span class="word visible" dir="ltr">φιλάργυροι</span><span class="gloss hidden" dir="ltr">lovers_of_money</span></span> <span class="wrapper" x-count="2"><span class="word visible" dir="ltr">ἀλαζόνες</span><span class="gloss hidden" dir="ltr">boastful</span></span> <span class="wrapper" x-count="7"><span class="word visible" dir="ltr">ὑπερήφανοι</span><span class="gloss hidden" dir="ltr">arrogant</span></span> <span class="wrapper" x-count="4"><span class="word visible" dir="ltr">βλάσφημοι</span><span class="gloss hidden" dir="ltr">abusive</span></span> <span class="wrapper" x-count="20"><span class="word visible" dir="ltr">γονεῦσιν</span><span class="gloss hidden" dir="ltr">to_their_parents</span></span> <span class="wrapper" x-count="6"><span class="word visible" dir="ltr">ἀπειθεῖς</span><span class="gloss hidden" dir="ltr">disobedient</span></span> <span class="wrapper" x-count="2"><span class="word visible" dir="ltr">ἀχάριστοι</span><span class="gloss hidden" dir="ltr">ungrateful</span></span> <span class="wrapper" x-count="2"><span class="word visible" dir="ltr">ἀνόσιοι</span><span class="gloss hidden" dir="ltr">unholy</span></span></p>
 <p class='verse greek' dir="ltr"><sup>3</sup> <span class="wrapper" x-count="2"><span class="word visible" dir="ltr">ἄστοργοι</span><span class="gloss hidden" dir="ltr">unloving</span></span> <span class="wrapper" x-count="1"><span class="word visible" dir="ltr">ἄσπονδοι</span><span class="gloss hidden" dir="ltr">unforgiving</span></span> <span class="wrapper" x-count="37"><span class="word visible" dir="ltr">διάβολοι</span><span class="gloss hidden" dir="ltr">slanderous</span></span> <span class="wrapper" x-count="1"><span class="word visible" dir="ltr">ἀκρατεῖς</span><span class="gloss hidden" dir="ltr">without_self-control</span></span> <span class="wrapper" x-count="1"><span class="word visible" dir="ltr">ἀνήμεροι</span><span class="gloss hidden" dir="ltr">brutal</span></span> <span class="wrapper" x-count="1"><span class="word visible" dir="ltr">ἀφιλάγαθοι</span><span class="gloss hidden" dir="ltr">without_love_of_good</span></span></p>
@@ -115,6 +122,25 @@
       document.getElementById('clickme').addEventListener("click", generate);
 
     generate();
+      const button = document.getElementById('font-change-up');
+      const buttondown = document.getElementById('font-change-down');
+    const paragraphs = document.querySelectorAll('.word');
+    console.log(paragraphs);
+    button.addEventListener('click', () => {
+        console.log('uping fontSize');
+      paragraphs.forEach(paragraph => {
+        // Increase or decrease font size based on your preference
+        paragraph.style.fontSize = `${parseInt(paragraph.style.fontSize) + 2}px`; // Increase by 2px
+      });
+    });
+   buttondown.addEventListener('click', () => {
+        console.log('droping fontSize');
+      paragraphs.forEach(paragraph => {
+        // Increase or decrease font size based on your preference
+        paragraph.style.fontSize = `${parseInt(paragraph.style.fontSize) - 2}px`; // Increase by 2px
+      });
+    });
+
   </script>
 </body>
 </html>

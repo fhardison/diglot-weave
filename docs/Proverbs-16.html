@@ -5,11 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Biblical Languages diglot weave</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://matcha.mizu.sh/matcha.css">
 </head>
 <body>
    <div class="header">
       <a href="index.html">Home</a>
       <a href="hebrew-index.html">Index</a>
+      <div>
+          <span>Change font size</span>
+            <button id="font-change-down">-</button>
+            <button id="font-change-up">+</button>
+      </div>
       <div id="level">
     <label for="vocabMin">Enter vocab minimum:</label>
     <input type="number" id="vocabMin" name="vocabMin" min="0" value="1000" placeholder="Enter a number">
@@ -21,6 +27,7 @@
       </details>
   </div>
   <div class="contents">
+      <h1>Proverbs 16</h1>
   <p class='verse hebrew' dir="rtl"><sup>1</sup> <span class="wrapper" x-count="20378"><span class="word visible" dir="rtl">לְ</span><span class="gloss hidden" dir="ltr">Of</span></span> <span class="wrapper" x-count="551"><span class="word visible" dir="rtl">אָדָם</span><span class="gloss hidden" dir="ltr">man</span></span> <span class="wrapper" x-count="1"><span class="word visible" dir="rtl">מַעַרְכֵי</span><span class="gloss hidden" dir="ltr">arrangements_of</span></span> <span class="wrapper" x-count="600"><span class="word visible" dir="rtl">לֵב</span><span class="gloss hidden" dir="ltr">heart</span></span> <span class="wrapper" x-count="50272"><span class="word visible" dir="rtl">וּ</span><span class="gloss hidden" dir="ltr">And</span></span> <span class="wrapper" x-count="7559"><span class="word visible" dir="rtl">מֵ</span><span class="gloss hidden" dir="ltr">from</span></span> <span class="wrapper" x-count="6513"><span class="word visible" dir="rtl">יְהוָה</span><span class="gloss hidden" dir="ltr">Jehovah</span></span> <span class="wrapper" x-count="6"><span class="word visible" dir="rtl">מַעֲנֵה</span><span class="gloss hidden" dir="ltr">an_answer_of</span></span> <span class="wrapper" x-count="117"><span class="word visible" dir="rtl">לָשׁוֹן</span><span class="gloss hidden" dir="ltr">tongue</span></span></p>
 <p class='verse hebrew' dir="rtl"><sup>2</sup> <span class="wrapper" x-count="5412"><span class="word visible" dir="rtl">כָּל</span><span class="gloss hidden" dir="ltr">All</span></span> <span class="wrapper" x-count="706"><span class="word visible" dir="rtl">דַּרְכֵי</span><span class="gloss hidden" dir="ltr">ways_of</span></span> <span class="wrapper" x-count="2187"><span class="word visible" dir="rtl">אִישׁ</span><span class="gloss hidden" dir="ltr">a_man</span></span> <span class="wrapper" x-count="11"><span class="word visible" dir="rtl">זַךְ</span><span class="gloss hidden" dir="ltr">pure</span></span> <span class="wrapper" x-count="15539"><span class="word visible" dir="rtl">בְּ</span><span class="gloss hidden" dir="ltr">in</span></span> <span class="wrapper" x-count="886"><span class="word visible" dir="rtl">עֵינָי</span><span class="gloss hidden" dir="ltr">eyes</span></span> <span class="wrapper" x-count="11950"><span class="word visible" dir="rtl">ו</span><span class="gloss hidden" dir="ltr">his_own</span></span> <span class="wrapper" x-count="50272"><span class="word visible" dir="rtl">וְ</span><span class="gloss hidden" dir="ltr">And</span></span> <span class="wrapper" x-count="18"><span class="word visible" dir="rtl">תֹכֵן</span><span class="gloss hidden" dir="ltr">is_pondering</span></span> <span class="wrapper" x-count="378"><span class="word visible" dir="rtl">רוּחוֹת</span><span class="gloss hidden" dir="ltr">spirits</span></span> <span class="wrapper" x-count="6513"><span class="word visible" dir="rtl">יְהוָה</span><span class="gloss hidden" dir="ltr">Jehovah</span></span></p>
 <p class='verse hebrew' dir="rtl"><sup>3</sup> <span class="wrapper" x-count="18"><span class="word visible" dir="rtl">גֹּל</span><span class="gloss hidden" dir="ltr">Roll</span></span> <span class="wrapper" x-count="5514"><span class="word visible" dir="rtl">אֶל</span><span class="gloss hidden" dir="ltr">unto</span></span> <span class="wrapper" x-count="6513"><span class="word visible" dir="rtl">יְהוָה</span><span class="gloss hidden" dir="ltr">Jehovah</span></span> <span class="wrapper" x-count="235"><span class="word visible" dir="rtl">מַעֲשֶׂי</span><span class="gloss hidden" dir="ltr">works</span></span> <span class="wrapper" x-count="6970"><span class="word visible" dir="rtl">ךָ</span><span class="gloss hidden" dir="ltr">thy</span></span> <span class="wrapper" x-count="50272"><span class="word visible" dir="rtl">וְ</span><span class="gloss hidden" dir="ltr">And</span></span> <span class="wrapper" x-count="217"><span class="word visible" dir="rtl">יִכֹּנוּ</span><span class="gloss hidden" dir="ltr">established_are</span></span> <span class="wrapper" x-count="56"><span class="word visible" dir="rtl">מַחְשְׁבֹתֶי</span><span class="gloss hidden" dir="ltr">purposes</span></span> <span class="wrapper" x-count="6970"><span class="word visible" dir="rtl">ךָ</span><span class="gloss hidden" dir="ltr">thy</span></span></p>
@@ -131,6 +138,25 @@
       document.getElementById('clickme').addEventListener("click", generate);
 
     generate();
+      const button = document.getElementById('font-change-up');
+      const buttondown = document.getElementById('font-change-down');
+    const paragraphs = document.querySelectorAll('.word');
+    console.log(paragraphs);
+    button.addEventListener('click', () => {
+        console.log('uping fontSize');
+      paragraphs.forEach(paragraph => {
+        // Increase or decrease font size based on your preference
+        paragraph.style.fontSize = `${parseInt(paragraph.style.fontSize) + 2}px`; // Increase by 2px
+      });
+    });
+   buttondown.addEventListener('click', () => {
+        console.log('droping fontSize');
+      paragraphs.forEach(paragraph => {
+        // Increase or decrease font size based on your preference
+        paragraph.style.fontSize = `${parseInt(paragraph.style.fontSize) - 2}px`; // Increase by 2px
+      });
+    });
+
   </script>
 </body>
 </html>

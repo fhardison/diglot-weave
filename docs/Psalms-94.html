@@ -5,11 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Biblical Languages diglot weave</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://matcha.mizu.sh/matcha.css">
 </head>
 <body>
    <div class="header">
       <a href="index.html">Home</a>
       <a href="hebrew-index.html">Index</a>
+      <div>
+          <span>Change font size</span>
+            <button id="font-change-down">-</button>
+            <button id="font-change-up">+</button>
+      </div>
       <div id="level">
     <label for="vocabMin">Enter vocab minimum:</label>
     <input type="number" id="vocabMin" name="vocabMin" min="0" value="1000" placeholder="Enter a number">
@@ -21,6 +27,7 @@
       </details>
   </div>
   <div class="contents">
+      <h1>Psalms 94</h1>
   <p class='verse hebrew' dir="rtl"><sup>1</sup> <span class="wrapper" x-count="236"><span class="word visible" dir="rtl">אֵל</span><span class="gloss hidden" dir="ltr">God_of</span></span> <span class="wrapper" x-count="27"><span class="word visible" dir="rtl">נְקָמוֹת</span><span class="gloss hidden" dir="ltr">vengeance</span></span> <span class="wrapper" x-count="6513"><span class="word visible" dir="rtl">יְהוָה</span><span class="gloss hidden" dir="ltr">Jehovah</span></span> <span class="wrapper" x-count="236"><span class="word visible" dir="rtl">אֵל</span><span class="gloss hidden" dir="ltr">God_of</span></span> <span class="wrapper" x-count="27"><span class="word visible" dir="rtl">נְקָמוֹת</span><span class="gloss hidden" dir="ltr">vengeance</span></span> <span class="wrapper" x-count="8"><span class="word visible" dir="rtl">הוֹפִיַע</span><span class="gloss hidden" dir="ltr">shine_forth</span></span></p>
 <p class='verse hebrew' dir="rtl"><sup>2</sup> <span class="wrapper" x-count="655"><span class="word visible" dir="rtl">הִנָּשֵׂא</span><span class="gloss hidden" dir="ltr">Be_lifted_up</span></span> <span class="wrapper" x-count="202"><span class="word visible" dir="rtl">שֹׁפֵט</span><span class="gloss hidden" dir="ltr">Judge_of</span></span> <span class="wrapper" x-count="23887"><span class="word visible" dir="rtl">הָ</span><span class="gloss hidden" dir="ltr">the</span></span> <span class="wrapper" x-count="2504"><span class="word visible" dir="rtl">אָרֶץ</span><span class="gloss hidden" dir="ltr">earth</span></span> <span class="wrapper" x-count="1057"><span class="word visible" dir="rtl">הָשֵׁב</span><span class="gloss hidden" dir="ltr">Send_back</span></span> <span class="wrapper" x-count="19"><span class="word visible" dir="rtl">גְּמוּל</span><span class="gloss hidden" dir="ltr">a_recompence</span></span> <span class="wrapper" x-count="5768"><span class="word visible" dir="rtl">עַל</span><span class="gloss hidden" dir="ltr">on</span></span> <span class="wrapper" x-count="8"><span class="word visible" dir="rtl">גֵּאִים</span><span class="gloss hidden" dir="ltr">proud</span></span></p>
 <p class='verse hebrew' dir="rtl"><sup>3</sup> <span class="wrapper" x-count="1262"><span class="word visible" dir="rtl">עַד</span><span class="gloss hidden" dir="ltr">Till</span></span> <span class="wrapper" x-count="43"><span class="word visible" dir="rtl">מָתַי</span><span class="gloss hidden" dir="ltr">when</span></span> <span class="wrapper" x-count="263"><span class="word visible" dir="rtl">רְשָׁעִים</span><span class="gloss hidden" dir="ltr">wicked</span></span> <span class="wrapper" x-count="6513"><span class="word visible" dir="rtl">יְהוָה</span><span class="gloss hidden" dir="ltr">Jehovah</span></span> <span class="wrapper" x-count="1262"><span class="word visible" dir="rtl">עַד</span><span class="gloss hidden" dir="ltr">Till</span></span> <span class="wrapper" x-count="43"><span class="word visible" dir="rtl">מָתַי</span><span class="gloss hidden" dir="ltr">when</span></span> <span class="wrapper" x-count="263"><span class="word visible" dir="rtl">רְשָׁעִים</span><span class="gloss hidden" dir="ltr">wicked</span></span> <span class="wrapper" x-count="16"><span class="word visible" dir="rtl">יַעֲלֹזוּ</span><span class="gloss hidden" dir="ltr">do_exult</span></span></p>
@@ -121,6 +128,25 @@
       document.getElementById('clickme').addEventListener("click", generate);
 
     generate();
+      const button = document.getElementById('font-change-up');
+      const buttondown = document.getElementById('font-change-down');
+    const paragraphs = document.querySelectorAll('.word');
+    console.log(paragraphs);
+    button.addEventListener('click', () => {
+        console.log('uping fontSize');
+      paragraphs.forEach(paragraph => {
+        // Increase or decrease font size based on your preference
+        paragraph.style.fontSize = `${parseInt(paragraph.style.fontSize) + 2}px`; // Increase by 2px
+      });
+    });
+   buttondown.addEventListener('click', () => {
+        console.log('droping fontSize');
+      paragraphs.forEach(paragraph => {
+        // Increase or decrease font size based on your preference
+        paragraph.style.fontSize = `${parseInt(paragraph.style.fontSize) - 2}px`; // Increase by 2px
+      });
+    });
+
   </script>
 </body>
 </html>

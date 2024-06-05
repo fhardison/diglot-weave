@@ -5,11 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Biblical Languages diglot weave</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://matcha.mizu.sh/matcha.css">
 </head>
 <body>
    <div class="header">
       <a href="index.html">Home</a>
       <a href="hebrew-index.html">Index</a>
+      <div>
+          <span>Change font size</span>
+            <button id="font-change-down">-</button>
+            <button id="font-change-up">+</button>
+      </div>
       <div id="level">
     <label for="vocabMin">Enter vocab minimum:</label>
     <input type="number" id="vocabMin" name="vocabMin" min="0" value="1000" placeholder="Enter a number">
@@ -21,6 +27,7 @@
       </details>
   </div>
   <div class="contents">
+      <h1>1 Chronicles 06</h1>
   <p class='verse hebrew' dir="rtl"><sup>1</sup> <span class="wrapper" x-count="4933"><span class="word visible" dir="rtl">בְּנֵי</span><span class="gloss hidden" dir="ltr">Sons_of</span></span> <span class="wrapper" x-count="43"><span class="word visible" dir="rtl">לֵוִי</span><span class="gloss hidden" dir="ltr">Levi</span></span> <span class="wrapper" x-count="14"><span class="word visible" dir="rtl">גֵּרְשֹׁם</span><span class="gloss hidden" dir="ltr">Gershom</span></span> <span class="wrapper" x-count="32"><span class="word visible" dir="rtl">קְהָת</span><span class="gloss hidden" dir="ltr">Kohath</span></span> <span class="wrapper" x-count="50272"><span class="word visible" dir="rtl">וּ</span><span class="gloss hidden" dir="ltr">and</span></span> <span class="wrapper" x-count="40"><span class="word visible" dir="rtl">מְרָרִי</span><span class="gloss hidden" dir="ltr">Merari</span></span></p>
 <p class='verse hebrew' dir="rtl"><sup>2</sup> <span class="wrapper" x-count="50272"><span class="word visible" dir="rtl">וְ</span><span class="gloss hidden" dir="ltr">And</span></span> <span class="wrapper" x-count="746"><span class="word visible" dir="rtl">אֵלֶּה</span><span class="gloss hidden" dir="ltr">these</span></span> <span class="wrapper" x-count="864"><span class="word visible" dir="rtl">שְׁמוֹת</span><span class="gloss hidden" dir="ltr">names_of</span></span> <span class="wrapper" x-count="4933"><span class="word visible" dir="rtl">בְּנֵי</span><span class="gloss hidden" dir="ltr">sons_of</span></span> <span class="wrapper" x-count="14"><span class="word visible" dir="rtl">גֵרְשׁוֹם</span><span class="gloss hidden" dir="ltr">Gershom</span></span> <span class="wrapper" x-count="6"><span class="word visible" dir="rtl">לִבְנִי</span><span class="gloss hidden" dir="ltr">Libni</span></span> <span class="wrapper" x-count="50272"><span class="word visible" dir="rtl">וְ</span><span class="gloss hidden" dir="ltr">and</span></span> <span class="wrapper" x-count="43"><span class="word visible" dir="rtl">שִׁמְעִי</span><span class="gloss hidden" dir="ltr">Shimei</span></span></p>
 <p class='verse hebrew' dir="rtl"><sup>3</sup> <span class="wrapper" x-count="50272"><span class="word visible" dir="rtl">וּ</span><span class="gloss hidden" dir="ltr">And</span></span> <span class="wrapper" x-count="4933"><span class="word visible" dir="rtl">בְנֵי</span><span class="gloss hidden" dir="ltr">sons_of</span></span> <span class="wrapper" x-count="32"><span class="word visible" dir="rtl">קְהָת</span><span class="gloss hidden" dir="ltr">Kohath</span></span> <span class="wrapper" x-count="14"><span class="word visible" dir="rtl">עַמְרָם</span><span class="gloss hidden" dir="ltr">Amram</span></span> <span class="wrapper" x-count="50272"><span class="word visible" dir="rtl">וְ</span><span class="gloss hidden" dir="ltr">and</span></span> <span class="wrapper" x-count="9"><span class="word visible" dir="rtl">יִצְהָר</span><span class="gloss hidden" dir="ltr">Izhar</span></span> <span class="wrapper" x-count="50272"><span class="word visible" dir="rtl">וְ</span><span class="gloss hidden" dir="ltr">and</span></span> <span class="wrapper" x-count="9"><span class="word visible" dir="rtl">חֶבְרוֹן</span><span class="gloss hidden" dir="ltr">Hebron</span></span> <span class="wrapper" x-count="50272"><span class="word visible" dir="rtl">וְ</span><span class="gloss hidden" dir="ltr">and</span></span> <span class="wrapper" x-count="16"><span class="word visible" dir="rtl">עֻזִּיאֵל</span><span class="gloss hidden" dir="ltr">Uzziel</span></span></p>
@@ -164,6 +171,25 @@
       document.getElementById('clickme').addEventListener("click", generate);
 
     generate();
+      const button = document.getElementById('font-change-up');
+      const buttondown = document.getElementById('font-change-down');
+    const paragraphs = document.querySelectorAll('.word');
+    console.log(paragraphs);
+    button.addEventListener('click', () => {
+        console.log('uping fontSize');
+      paragraphs.forEach(paragraph => {
+        // Increase or decrease font size based on your preference
+        paragraph.style.fontSize = `${parseInt(paragraph.style.fontSize) + 2}px`; // Increase by 2px
+      });
+    });
+   buttondown.addEventListener('click', () => {
+        console.log('droping fontSize');
+      paragraphs.forEach(paragraph => {
+        // Increase or decrease font size based on your preference
+        paragraph.style.fontSize = `${parseInt(paragraph.style.fontSize) - 2}px`; // Increase by 2px
+      });
+    });
+
   </script>
 </body>
 </html>

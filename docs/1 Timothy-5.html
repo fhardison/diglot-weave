@@ -5,11 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Biblical Languages diglot weave</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://matcha.mizu.sh/matcha.css">
 </head>
 <body>
    <div class="header">
       <a href="index.html">Home</a>
       <a href="greek-index.html">Index</a>
+      <div>
+          <span>Change font size</span>
+            <button id="font-change-down">-</button>
+            <button id="font-change-up">+</button>
+      </div>
       <div id="level">
     <label for="vocabMin">Enter vocab minimum:</label>
     <input type="number" id="vocabMin" name="vocabMin" min="0" value="1000" placeholder="Enter a number">
@@ -21,6 +27,7 @@
       </details>
   </div>
   <div class="contents">
+      <h1>1 Timothy 05</h1>
   <p class='verse greek' dir="ltr"><sup>1</sup> <span class="wrapper" x-count="66"><span class="word visible" dir="ltr">Πρεσβυτέρῳ</span><span class="gloss hidden" dir="ltr">an_older_man</span></span> <span class="wrapper" x-count="1041"><span class="word visible" dir="ltr">μὴ</span><span class="gloss hidden" dir="ltr">Do_not</span></span> <span class="wrapper" x-count="1"><span class="word visible" dir="ltr">ἐπιπλήξῃς</span><span class="gloss hidden" dir="ltr">rebuke</span></span> <span class="wrapper" x-count="637"><span class="word visible" dir="ltr">ἀλλὰ</span><span class="gloss hidden" dir="ltr">but</span></span> <span class="wrapper" x-count="109"><span class="word visible" dir="ltr">παρακάλει</span><span class="gloss hidden" dir="ltr">appeal_to_him</span></span> <span class="wrapper" x-count="503"><span class="word visible" dir="ltr">ὡς</span><span class="gloss hidden" dir="ltr">as_to</span></span> <span class="wrapper" x-count="414"><span class="word visible" dir="ltr">πατέρα</span><span class="gloss hidden" dir="ltr">a_father</span></span> <span class="wrapper" x-count="24"><span class="word visible" dir="ltr">νεωτέρους</span><span class="gloss hidden" dir="ltr">Treat_younger_men</span></span> <span class="wrapper" x-count="503"><span class="word visible" dir="ltr">ὡς</span><span class="gloss hidden" dir="ltr">as</span></span> <span class="wrapper" x-count="342"><span class="word visible" dir="ltr">ἀδελφούς</span><span class="gloss hidden" dir="ltr">brothers</span></span></p>
 <p class='verse greek' dir="ltr"><sup>2</sup> <span class="wrapper" x-count="66"><span class="word visible" dir="ltr">πρεσβυτέρας</span><span class="gloss hidden" dir="ltr">older_women</span></span> <span class="wrapper" x-count="503"><span class="word visible" dir="ltr">ὡς</span><span class="gloss hidden" dir="ltr">as</span></span> <span class="wrapper" x-count="83"><span class="word visible" dir="ltr">μητέρας</span><span class="gloss hidden" dir="ltr">mothers</span></span> <span class="wrapper" x-count="24"><span class="word visible" dir="ltr">νεωτέρας</span><span class="gloss hidden" dir="ltr">and_younger_women</span></span> <span class="wrapper" x-count="503"><span class="word visible" dir="ltr">ὡς</span><span class="gloss hidden" dir="ltr">as</span></span> <span class="wrapper" x-count="25"><span class="word visible" dir="ltr">ἀδελφὰς</span><span class="gloss hidden" dir="ltr">sisters</span></span> <span class="wrapper" x-count="2733"><span class="word visible" dir="ltr">ἐν</span><span class="gloss hidden" dir="ltr">with</span></span> <span class="wrapper" x-count="1243"><span class="word visible" dir="ltr">πάσῃ</span><span class="gloss hidden" dir="ltr">absolute</span></span> <span class="wrapper" x-count="2"><span class="word visible" dir="ltr">ἁγνείᾳ</span><span class="gloss hidden" dir="ltr">purity</span></span></p>
 <p class='verse greek' dir="ltr"><sup>3</sup> <span class="wrapper" x-count="26"><span class="word visible" dir="ltr">Χήρας</span><span class="gloss hidden" dir="ltr">the_widows</span></span> <span class="wrapper" x-count="21"><span class="word visible" dir="ltr">τίμα</span><span class="gloss hidden" dir="ltr">Honor</span></span> <span class="wrapper" x-count="19787"><span class="word visible" dir="ltr">τὰς</span><span class="gloss hidden" dir="ltr">who_are</span></span> <span class="wrapper" x-count="10"><span class="word visible" dir="ltr">ὄντως</span><span class="gloss hidden" dir="ltr">truly</span></span> <span class="wrapper" x-count="26"><span class="word visible" dir="ltr">χήρας</span><span class="gloss hidden" dir="ltr">widows</span></span></p>
@@ -123,6 +130,25 @@
       document.getElementById('clickme').addEventListener("click", generate);
 
     generate();
+      const button = document.getElementById('font-change-up');
+      const buttondown = document.getElementById('font-change-down');
+    const paragraphs = document.querySelectorAll('.word');
+    console.log(paragraphs);
+    button.addEventListener('click', () => {
+        console.log('uping fontSize');
+      paragraphs.forEach(paragraph => {
+        // Increase or decrease font size based on your preference
+        paragraph.style.fontSize = `${parseInt(paragraph.style.fontSize) + 2}px`; // Increase by 2px
+      });
+    });
+   buttondown.addEventListener('click', () => {
+        console.log('droping fontSize');
+      paragraphs.forEach(paragraph => {
+        // Increase or decrease font size based on your preference
+        paragraph.style.fontSize = `${parseInt(paragraph.style.fontSize) - 2}px`; // Increase by 2px
+      });
+    });
+
   </script>
 </body>
 </html>

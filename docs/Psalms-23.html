@@ -5,11 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Biblical Languages diglot weave</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://matcha.mizu.sh/matcha.css">
 </head>
 <body>
    <div class="header">
       <a href="index.html">Home</a>
       <a href="hebrew-index.html">Index</a>
+      <div>
+          <span>Change font size</span>
+            <button id="font-change-down">-</button>
+            <button id="font-change-up">+</button>
+      </div>
       <div id="level">
     <label for="vocabMin">Enter vocab minimum:</label>
     <input type="number" id="vocabMin" name="vocabMin" min="0" value="1000" placeholder="Enter a number">
@@ -21,6 +27,7 @@
       </details>
   </div>
   <div class="contents">
+      <h1>Psalms 23</h1>
   <p class='verse hebrew' dir="rtl"><sup>1</sup> <span class="wrapper" x-count="57"><span class="word visible" dir="rtl">מִזְמוֹר</span><span class="gloss hidden" dir="ltr">A_Psalm</span></span> <span class="wrapper" x-count="20378"><span class="word visible" dir="rtl">לְ</span><span class="gloss hidden" dir="ltr">of</span></span> <span class="wrapper" x-count="1075"><span class="word visible" dir="rtl">דָוִד</span><span class="gloss hidden" dir="ltr">David</span></span> <span class="wrapper" x-count="6513"><span class="word visible" dir="rtl">יְהוָה</span><span class="gloss hidden" dir="ltr">Jehovah</span></span> <span class="wrapper" x-count="83"><span class="word visible" dir="rtl">רֹעִ</span><span class="gloss hidden" dir="ltr">shepherd</span></span> <span class="wrapper" x-count="7065"><span class="word visible" dir="rtl">י</span><span class="gloss hidden" dir="ltr">my</span></span> <span class="wrapper" x-count="5168"><span class="word visible" dir="rtl">לֹא</span><span class="gloss hidden" dir="ltr">not</span></span> <span class="wrapper" x-count="22"><span class="word visible" dir="rtl">אֶחְסָר</span><span class="gloss hidden" dir="ltr">I_do_lack</span></span></p>
 <p class='verse hebrew' dir="rtl"><sup>2</sup> <span class="wrapper" x-count="15539"><span class="word visible" dir="rtl">בִּ</span><span class="gloss hidden" dir="ltr">In</span></span> <span class="wrapper" x-count="13"><span class="word visible" dir="rtl">נְאוֹת</span><span class="gloss hidden" dir="ltr">pastures_of</span></span> <span class="wrapper" x-count="14"><span class="word visible" dir="rtl">דֶּשֶׁא</span><span class="gloss hidden" dir="ltr">tender_grass</span></span> <span class="wrapper" x-count="30"><span class="word visible" dir="rtl">יַרְבִּיצֵ</span><span class="gloss hidden" dir="ltr">He_causeth_to_lie_down</span></span> <span class="wrapper" x-count="1169"><span class="word visible" dir="rtl">נִי</span><span class="gloss hidden" dir="ltr">me</span></span> <span class="wrapper" x-count="5768"><span class="word visible" dir="rtl">עַל</span><span class="gloss hidden" dir="ltr">By</span></span> <span class="wrapper" x-count="581"><span class="word visible" dir="rtl">מֵי</span><span class="gloss hidden" dir="ltr">waters</span></span> <span class="wrapper" x-count="21"><span class="word visible" dir="rtl">מְנֻחוֹת</span><span class="gloss hidden" dir="ltr">quiet</span></span> <span class="wrapper" x-count="10"><span class="word visible" dir="rtl">יְנַהֲלֵ</span><span class="gloss hidden" dir="ltr">He_doth_lead</span></span> <span class="wrapper" x-count="1169"><span class="word visible" dir="rtl">נִי</span><span class="gloss hidden" dir="ltr">me</span></span></p>
 <p class='verse hebrew' dir="rtl"><sup>3</sup> <span class="wrapper" x-count="754"><span class="word visible" dir="rtl">נַפְשִׁ</span><span class="gloss hidden" dir="ltr">soul</span></span> <span class="wrapper" x-count="7065"><span class="word visible" dir="rtl">י</span><span class="gloss hidden" dir="ltr">My</span></span> <span class="wrapper" x-count="1057"><span class="word visible" dir="rtl">יְשׁוֹבֵב</span><span class="gloss hidden" dir="ltr">He_refresheth</span></span> <span class="wrapper" x-count="39"><span class="word visible" dir="rtl">יַנְחֵ</span><span class="gloss hidden" dir="ltr">He_leadeth</span></span> <span class="wrapper" x-count="1169"><span class="word visible" dir="rtl">נִי</span><span class="gloss hidden" dir="ltr">me</span></span> <span class="wrapper" x-count="15539"><span class="word visible" dir="rtl">בְ</span><span class="gloss hidden" dir="ltr">in</span></span> <span class="wrapper" x-count="13"><span class="word visible" dir="rtl">מַעְגְּלֵי</span><span class="gloss hidden" dir="ltr">paths_of</span></span> <span class="wrapper" x-count="119"><span class="word visible" dir="rtl">צֶדֶק</span><span class="gloss hidden" dir="ltr">righteousness</span></span> <span class="wrapper" x-count="272"><span class="word visible" dir="rtl">לְמַעַן</span><span class="gloss hidden" dir="ltr">For_sake</span></span> <span class="wrapper" x-count="864"><span class="word visible" dir="rtl">שְׁמ</span><span class="gloss hidden" dir="ltr">name’s</span></span> <span class="wrapper" x-count="11950"><span class="word visible" dir="rtl">וֹ</span><span class="gloss hidden" dir="ltr">His</span></span></p>
@@ -104,6 +111,25 @@
       document.getElementById('clickme').addEventListener("click", generate);
 
     generate();
+      const button = document.getElementById('font-change-up');
+      const buttondown = document.getElementById('font-change-down');
+    const paragraphs = document.querySelectorAll('.word');
+    console.log(paragraphs);
+    button.addEventListener('click', () => {
+        console.log('uping fontSize');
+      paragraphs.forEach(paragraph => {
+        // Increase or decrease font size based on your preference
+        paragraph.style.fontSize = `${parseInt(paragraph.style.fontSize) + 2}px`; // Increase by 2px
+      });
+    });
+   buttondown.addEventListener('click', () => {
+        console.log('droping fontSize');
+      paragraphs.forEach(paragraph => {
+        // Increase or decrease font size based on your preference
+        paragraph.style.fontSize = `${parseInt(paragraph.style.fontSize) - 2}px`; // Increase by 2px
+      });
+    });
+
   </script>
 </body>
 </html>

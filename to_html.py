@@ -116,6 +116,13 @@ def get_text(id, gloss):
     return '_'.join([tgt_file.get(x, '-') for x in tgt_ids])
 
 
+def output_cpt(fpath, chapter, index_type, bk, cur_chapter):
+    print_cpt = cur_chapter
+    if cur_chapter.startswith('0'):
+        print_cpt = print_cpt[1:]
+    Path(fpath).write_text(template.replace('$body$', '\n'.join(chapter)).replace('$index$', index_type).replace('$title$', f"{bk} {print_cpt}"))
+
+
 cur_verse = None
 cur_book = None
 cur_chapter = None
@@ -141,7 +148,7 @@ for row in data:
             fpath = f'./docs/{bk}-{int(cur_chapter)}.html'
             print(fpath)
             books[bk].append(fpath)
-            Path(fpath).write_text(template.replace('$body$', '\n'.join(chapter)).replace('$index$', index_type))
+            output_cpt(fpath, chapter, index_type, bk, cur_chapter)
             chapter = []
         cur_chapter = cp
     if b != cur_book:
@@ -151,7 +158,7 @@ for row in data:
             fpath = f'./docs/{bk}-{int(cur_chapter)}.html'
             print(fpath)
             books[bk].append(fpath)
-            Path(fpath).write_text(template.replace('$body$', '\n'.join(chapter)).replace('$index$', index_type))
+            output_cpt(fpath, chapter, index_type, bk, cur_chapter)
             chapter = []
         cur_book = b
     gloss = row['gloss']
